@@ -1,0 +1,8 @@
+{ "campus": {
+	"name": "2 Folsom",
+	"location": {
+		"latitude": 40.0,
+		"longitude": 40.0,
+    }
+  }
+}

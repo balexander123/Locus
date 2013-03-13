@@ -7,13 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Location.h"
 
 @class ViewController;
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
+@property (strong, nonatomic) Location *location;
 @property (strong, nonatomic) UIWindow *window;
-
 @property (strong, nonatomic) ViewController *viewController;
+@property (strong, nonatomic) NSString *datasourceURL;
+
+- (void)setupPreferences;
 
 @end
