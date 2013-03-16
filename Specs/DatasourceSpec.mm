@@ -62,6 +62,55 @@ describe(@"Datasource", ^{
         expect(bOK).to(equal(true));
     });
     
+    it(@"should create a database entry",^{
+        // Get the app delegate
+        AppDelegate *appDelegate = [[AppDelegate alloc] init];
+        [appDelegate setupPreferences];
+        
+        // need a couchbase helper
+        CouchbaseHelper *cbHelper = [[CouchbaseHelper alloc] init];
+        
+        // create the locations db
+        bool bOK = [cbHelper databaseOperation:[appDelegate datasourceURL] withDatabase:@"locations" withMethod:@"PUT"];
+        expect(bOK).to(equal(true));
+        
+        bOK = [cbHelper createData:[appDelegate datasourceURL] withDatabase:@"locations" withData:@"{\"loc\": [37.791269,-122.390978]}" andKey:@"SF2F"];
+        expect(bOK).to(equal(true));
+        
+        // clean up
+        bOK = [cbHelper databaseOperation:[appDelegate datasourceURL] withDatabase:@"locations" withMethod:@"DELETE"];
+        
+        expect(bOK).to(equal(true));
+    });
+    
+    
+    it(@"should compute a spatial view",^{
+        // Get the app delegate
+        AppDelegate *appDelegate = [[AppDelegate alloc] init];
+        [appDelegate setupPreferences];
+        
+        // need a couchbase helper
+        CouchbaseHelper *cbHelper = [[CouchbaseHelper alloc] init];
+        
+        // create the locations db
+        bool bOK = [cbHelper databaseOperation:[appDelegate datasourceURL] withDatabase:@"locations" withMethod:@"PUT"];
+        expect(bOK).to(equal(true));
+        
+        // add some locations
+        [cbHelper createData:[appDelegate datasourceURL] withDatabase:@"locations" withData:@"{\"loc\": [37.791269,-122.390978]}" andKey:@"SF2F"];
+        [cbHelper createData:[appDelegate datasourceURL] withDatabase:@"locations" withData:@"{\"loc\": [37.789353,-122.388747]}" andKey:@"SF1H"];
+        [cbHelper createData:[appDelegate datasourceURL] withDatabase:@"locations" withData:@"{\"loc\": [37.769494,-122.38688]}" andKey:@"SFMB"];
+        
+        // create the spatial view
+        NSDictionary *spatialResponse = [cbHelper computeView:[appDelegate datasourceURL] withDatabase:@"locations" withParams:@"_spatial/points?point=37.726398,-122.463613"];
+        
+        expect(spatialResponse).to(be_truthy);
+        
+        // clean up
+        bOK = [cbHelper databaseOperation:[appDelegate datasourceURL] withDatabase:@"locations" withMethod:@"DELETE"];
+        
+        expect(bOK).to(equal(true));
+    });
 });
 
 SPEC_END

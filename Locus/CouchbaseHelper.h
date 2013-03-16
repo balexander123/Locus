@@ -13,5 +13,7 @@
 -(bool)databaseOperation:(NSString*)dbURL withDatabase:(NSString*)database withMethod:(NSString*)method;
 -(NSString*)uuid;
 -(bool)createView:(NSString*)dbURL withDatabase:(NSString*)database withData:(NSString*)viewData;
+-(bool)createData:(NSString*)dbURL withDatabase:(NSString*)database withData:(NSString*)data andKey:(NSString*)key;
+-(NSDictionary *)computeView:(NSString*)dbURL withDatabase:(NSString*)database withParams:(NSString*)viewParams;
 
 @end
