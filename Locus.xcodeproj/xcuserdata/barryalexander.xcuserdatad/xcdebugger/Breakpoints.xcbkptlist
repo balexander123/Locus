@@ -55,16 +55,5 @@
          landmarkName = "@implementation Datasource"
          landmarkType = "3">
       </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "Specs/LocationSpec.mm"
-         timestampString = "384837054.645598"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "45"
-         endingLineNumber = "45">
-      </FileBreakpoint>
    </FileBreakpoints>
 </Bucket>
