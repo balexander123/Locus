@@ -9,8 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
 
-static const CLLocationDegrees firstGapLatitude=37.726398;
-static const CLLocationDegrees firstGapLongitude=-122.463613;
+#import "LocusConstants.h"
 
 @interface Location : NSObject <CLLocationManagerDelegate> {
 

@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6E05B66816F6CDDB00008413 /* SpatialHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E05B66716F6CDDB00008413 /* SpatialHelper.m */; };
+		6E05B66A16F6DA6700008413 /* SpatialHelperSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6E05B66916F6DA6700008413 /* SpatialHelperSpec.mm */; };
+		6E05B66C16F8150000008413 /* LocusConstants.h in Sources */ = {isa = PBXBuildFile; fileRef = 6E05B66B16F8141000008413 /* LocusConstants.h */; };
+		6E05B66D16F81D2700008413 /* SpatialHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E05B66716F6CDDB00008413 /* SpatialHelper.m */; };
 		6E5BA1A616EC3CB10052ACBF /* CouchbaseHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5BA1A516EC3CB10052ACBF /* CouchbaseHelper.m */; };
 		6E5BA1A716EC3CB10052ACBF /* CouchbaseHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5BA1A516EC3CB10052ACBF /* CouchbaseHelper.m */; };
 		6E5BA1A916EC45C50052ACBF /* CouchbaseHelperSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6E5BA1A816EC45C50052ACBF /* CouchbaseHelperSpec.mm */; };
@@ -64,6 +68,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6E05B66616F6CDDB00008413 /* SpatialHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpatialHelper.h; sourceTree = "<group>"; };
+		6E05B66716F6CDDB00008413 /* SpatialHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpatialHelper.m; sourceTree = "<group>"; };
+		6E05B66916F6DA6700008413 /* SpatialHelperSpec.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SpatialHelperSpec.mm; sourceTree = "<group>"; };
+		6E05B66B16F8141000008413 /* LocusConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocusConstants.h; sourceTree = "<group>"; };
 		6E5BA1A416EC3CB10052ACBF /* CouchbaseHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CouchbaseHelper.h; sourceTree = "<group>"; };
 		6E5BA1A516EC3CB10052ACBF /* CouchbaseHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CouchbaseHelper.m; sourceTree = "<group>"; };
 		6E5BA1A816EC45C50052ACBF /* CouchbaseHelperSpec.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CouchbaseHelperSpec.mm; sourceTree = "<group>"; };
@@ -161,6 +169,7 @@
 				6ED2C46F16D09906005B0A03 /* SpecHelper.h */,
 				6ED2C47216D09ABD005B0A03 /* DatasourceSpec.mm */,
 				6E5BA1A816EC45C50052ACBF /* CouchbaseHelperSpec.mm */,
+				6E05B66916F6DA6700008413 /* SpatialHelperSpec.mm */,
 			);
 			path = Specs;
 			sourceTree = "<group>";
@@ -235,6 +244,9 @@
 				6ED2C47416D09B4D005B0A03 /* Datasource.h */,
 				6E5BA1A416EC3CB10052ACBF /* CouchbaseHelper.h */,
 				6E5BA1A516EC3CB10052ACBF /* CouchbaseHelper.m */,
+				6E05B66616F6CDDB00008413 /* SpatialHelper.h */,
+				6E05B66716F6CDDB00008413 /* SpatialHelper.m */,
+				6E05B66B16F8141000008413 /* LocusConstants.h */,
 			);
 			path = Locus;
 			sourceTree = "<group>";
@@ -350,6 +362,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6E05B66D16F81D2700008413 /* SpatialHelper.m in Sources */,
+				6E05B66C16F8150000008413 /* LocusConstants.h in Sources */,
 				6ED2C47A16D1E19B005B0A03 /* ViewController.m in Sources */,
 				6ED2C47916D1E163005B0A03 /* AppDelegate.m in Sources */,
 				6ED2C46616CB5215005B0A03 /* User.m in Sources */,
@@ -365,6 +379,7 @@
 				6ED2C47316D09ABD005B0A03 /* DatasourceSpec.mm in Sources */,
 				6E5BA1A716EC3CB10052ACBF /* CouchbaseHelper.m in Sources */,
 				6E5BA1A916EC45C50052ACBF /* CouchbaseHelperSpec.mm in Sources */,
+				6E05B66A16F6DA6700008413 /* SpatialHelperSpec.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -382,6 +397,7 @@
 				6E62238216AD011E003F5490 /* Campus.m in Sources */,
 				6ED2C46116CA0631005B0A03 /* User.m in Sources */,
 				6E5BA1A616EC3CB10052ACBF /* CouchbaseHelper.m in Sources */,
+				6E05B66816F6CDDB00008413 /* SpatialHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

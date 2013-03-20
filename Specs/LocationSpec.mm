@@ -40,9 +40,9 @@ describe(@"User locations", ^{
         [campus.location longitude] should_not equal(NULL);
     }); */
                                                                
-    it(@"should be able to find the closest SF HQ locations based on the original Gap store", ^{
+    it(@"should be able to find the closest SF HQ locations based on the original Gap store", PENDING); /*^{
         
-    });
+    }); */
     
     it(@"should have a spatial view", ^{
         // Get the app delegate

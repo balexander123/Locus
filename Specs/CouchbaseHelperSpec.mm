@@ -6,14 +6,13 @@ using namespace Cedar::Doubles;
 SPEC_BEGIN(CouchbaseHelperSpec)
 
 describe(@"CouchbaseHelper", ^{
-    __block CouchbaseHelper *model;
+    __block CouchbaseHelper *cbHelper;
 
     beforeEach(^{
-
+        cbHelper = [[CouchbaseHelper alloc] init];
     });
     
     it(@"should generate a UUID",^{
-        CouchbaseHelper *cbHelper = [[CouchbaseHelper alloc] init];
         NSString *uuid = [cbHelper uuid];
         
         NSLog(@"uuid: %@", uuid);
