@@ -15,4 +15,6 @@ static const CLLocationDegrees firstGapLongitude=-122.463613;
 static const CLLocationDegrees gapHQLatitude=37.791269;
 static const CLLocationDegrees gapHQLongitude=-122.390978;
 
+static NSString *spatialPointsFormat=@"_spatial/points?point=%f,%f";
+
 #endif

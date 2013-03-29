@@ -68,5 +68,16 @@
          landmarkName = "-distanceBetween:endingLocation:usingUnits:"
          landmarkType = "5">
       </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Specs/LocationSpec.mm"
+         timestampString = "386222517.796907"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "85"
+         endingLineNumber = "85">
+      </FileBreakpoint>
    </FileBreakpoints>
 </Bucket>
