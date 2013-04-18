@@ -10,4 +10,8 @@
 
 @implementation CampusList
 
+-(NSDictionary*)campusListForOrganization:(Organization*)organization {
+    return [[NSDictionary alloc] init];
+}
+
 @end

@@ -7,7 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Organization.h"
 
 @interface CampusList : NSObject
+
+-(NSDictionary*)campusListForOrganization:(Organization*)organization;
 
 @end

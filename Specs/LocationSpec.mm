@@ -38,18 +38,22 @@ describe(@"User locations", ^{
     CouchbaseHelper *cbHelper = [[CouchbaseHelper alloc] init];
     
     // create the locations db
-    bool bOK = [cbHelper databaseOperation:[appDelegate datasourceURL] withDatabase:@"locations" withMethod:@"PUT"];
-    expect(bOK).to(equal(true));
+    it(@"should create a locations database", ^{
+        bool bOK = [cbHelper databaseOperation:[appDelegate datasourceURL] withDatabase:@"locations" withMethod:@"PUT"];
+        expect(bOK).to(equal(true));
+    });
     
     // add some locations
-    [cbHelper createData:[appDelegate datasourceURL] withDatabase:@"locations" withData:@"{\"loc\": [37.791269,-122.390978]}" andKey:@"SF2F"];
-    [cbHelper createData:[appDelegate datasourceURL] withDatabase:@"locations" withData:@"{\"loc\": [37.789353,-122.388747]}" andKey:@"SF1H"];
-    [cbHelper createData:[appDelegate datasourceURL] withDatabase:@"locations" withData:@"{\"loc\": [37.769494,-122.38688]}" andKey:@"SFMB"];
+    it(@"should create a location view function", ^{
+        [cbHelper createData:[appDelegate datasourceURL] withDatabase:@"locations" withData:@"{\"loc\": [37.791269,-122.390978]}" andKey:@"SF2F"];
+        [cbHelper createData:[appDelegate datasourceURL] withDatabase:@"locations" withData:@"{\"loc\": [37.789353,-122.388747]}" andKey:@"SF1H"];
+        [cbHelper createData:[appDelegate datasourceURL] withDatabase:@"locations" withData:@"{\"loc\": [37.769494,-122.38688]}" andKey:@"SFMB"];
     
-    // create the spatial M/R emit function block as a JSON string
-    NSString *viewData = [[NSString alloc]initWithString:@"{\"spatial\":{\"points\" : \"function(doc) {\\n if (doc.loc) {\\n emit({\\n type: \\\"Point\\\", \\n coordinates: [doc.loc[0], doc.loc[1]]\\n}, [doc._id, doc.loc]);\\n}};\"}}"];
-    bOK = [cbHelper createView:[appDelegate datasourceURL] withDatabase:@"locations" withData:viewData];
-    expect(bOK).to(equal(true));
+        // create the spatial M/R emit function block as a JSON string
+        NSString *viewData = [[NSString alloc]initWithString:@"{\"spatial\":{\"points\" : \"function(doc) {\\n if (doc.loc) {\\n emit({\\n type: \\\"Point\\\", \\n coordinates: [doc.loc[0], doc.loc[1]]\\n}, [doc._id, doc.loc]);\\n}};\"}}"];
+        bool bOK = [cbHelper createView:[appDelegate datasourceURL] withDatabase:@"locations" withData:viewData];
+        expect(bOK).to(equal(true));
+    });
     
     
     it(@"should know the location of the user", ^{
@@ -66,11 +70,6 @@ describe(@"User locations", ^{
         // get the rows dictionary
         NSDictionary *rows = [spatialResponse objectForKey:@"rows"];
         expect(rows.count).to(equal(3));
-        
-        // clean up
-        //BOOL bOK = [cbHelper databaseOperation:[appDelegate datasourceURL] withDatabase:@"locations" withMethod:@"DELETE"];
-        
-        //expect(bOK).to(equal(true));
     });
        
                                                                
