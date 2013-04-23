@@ -1,3 +1,4 @@
+#import "SpecHelper.h"
 #import "CouchbaseHelper.h"
 
 using namespace Cedar::Matchers;

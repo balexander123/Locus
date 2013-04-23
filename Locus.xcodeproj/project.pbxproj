@@ -8,12 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		6E05B66816F6CDDB00008413 /* SpatialHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E05B66716F6CDDB00008413 /* SpatialHelper.m */; };
-		6E05B66A16F6DA6700008413 /* SpatialHelperSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6E05B66916F6DA6700008413 /* SpatialHelperSpec.mm */; };
+		6E05B66A16F6DA6700008413 /* SpatialHelperSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6E05B66916F6DA6700008413 /* SpatialHelperSpec.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		6E05B66C16F8150000008413 /* LocusConstants.h in Sources */ = {isa = PBXBuildFile; fileRef = 6E05B66B16F8141000008413 /* LocusConstants.h */; };
 		6E05B66D16F81D2700008413 /* SpatialHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E05B66716F6CDDB00008413 /* SpatialHelper.m */; };
 		6E5BA1A616EC3CB10052ACBF /* CouchbaseHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5BA1A516EC3CB10052ACBF /* CouchbaseHelper.m */; };
 		6E5BA1A716EC3CB10052ACBF /* CouchbaseHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5BA1A516EC3CB10052ACBF /* CouchbaseHelper.m */; };
-		6E5BA1A916EC45C50052ACBF /* CouchbaseHelperSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6E5BA1A816EC45C50052ACBF /* CouchbaseHelperSpec.mm */; };
+		6E5BA1A916EC45C50052ACBF /* CouchbaseHelperSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6E5BA1A816EC45C50052ACBF /* CouchbaseHelperSpec.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		6E62237816AA5F39003F5490 /* BuildingList.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E62237716AA5F39003F5490 /* BuildingList.m */; };
 		6E62237C16ACFDCE003F5490 /* Organization.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E62237B16ACFDCD003F5490 /* Organization.m */; };
 		6E62237F16AD00EF003F5490 /* CampusList.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E62237E16AD00EF003F5490 /* CampusList.m */; };
@@ -21,6 +21,8 @@
 		6E62238316AD08E9003F5490 /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EA85D5316A27BE00036451C /* Location.m */; };
 		6E62238416AD08F4003F5490 /* Organization.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E62237B16ACFDCD003F5490 /* Organization.m */; };
 		6E62238516AD0910003F5490 /* Campus.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E62238116AD011E003F5490 /* Campus.m */; };
+		6EA422CD1720EEAC00558B70 /* CampusListSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6EA422CC1720EEAC00558B70 /* CampusListSpec.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		6EA422CE1720FB7600558B70 /* CampusList.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E62237E16AD00EF003F5490 /* CampusList.m */; };
 		6EA85D3C16A25B230036451C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EF3B836169D295F00BB1A35 /* UIKit.framework */; };
 		6EA85D3D16A25B230036451C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EF3B838169D295F00BB1A35 /* Foundation.framework */; };
 		6EA85D3E16A25B230036451C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EF3B83A169D295F00BB1A35 /* CoreGraphics.framework */; };
@@ -33,17 +35,11 @@
 		6EA85D5816A7C0130036451C /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EA85D5716A7C0120036451C /* CoreLocation.framework */; };
 		6EA85D5A16A7C4BB0036451C /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EA85D5716A7C0120036451C /* CoreLocation.framework */; };
 		6EB03BA416D5E6B30046C440 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 6EB03BA316D5E6B30046C440 /* Settings.bundle */; };
-		6EC4EEA2171FB45000CCEDFC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EF3B836169D295F00BB1A35 /* UIKit.framework */; };
-		6EC4EEA3171FB45000CCEDFC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EF3B838169D295F00BB1A35 /* Foundation.framework */; };
-		6EC4EEA4171FB45000CCEDFC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EF3B83A169D295F00BB1A35 /* CoreGraphics.framework */; };
-		6EC4EEB7172078ED00CCEDFC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EF3B846169D295F00BB1A35 /* AppDelegate.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		6EC4EEB81720796900CCEDFC /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EF3B84F169D295F00BB1A35 /* ViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		6ED2C45E16CA026C005B0A03 /* Swizzler.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ED2C45D16CA026C005B0A03 /* Swizzler.m */; };
 		6ED2C46116CA0631005B0A03 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ED2C46016CA0631005B0A03 /* User.m */; };
 		6ED2C46616CB5215005B0A03 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ED2C46016CA0631005B0A03 /* User.m */; };
 		6ED2C46916CB5D0B005B0A03 /* OrganizationMock.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ED2C46816CB5D0B005B0A03 /* OrganizationMock.m */; };
 		6ED2C46B16CC79EE005B0A03 /* sampleCampus.json in Resources */ = {isa = PBXBuildFile; fileRef = 6ED2C46A16CC79EE005B0A03 /* sampleCampus.json */; };
-		6ED2C46E16CF21B3005B0A03 /* FakeOrganization.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ED2C46D16CF21B3005B0A03 /* FakeOrganization.m */; };
 		6ED2C47316D09ABD005B0A03 /* DatasourceSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6ED2C47216D09ABD005B0A03 /* DatasourceSpec.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		6ED2C47816D0A272005B0A03 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 6ED2C47716D0A272005B0A03 /* Settings.bundle */; };
 		6ED2C47916D1E163005B0A03 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EF3B846169D295F00BB1A35 /* AppDelegate.m */; };
@@ -88,6 +84,7 @@
 		6E62237E16AD00EF003F5490 /* CampusList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CampusList.m; sourceTree = "<group>"; };
 		6E62238016AD011E003F5490 /* Campus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Campus.h; sourceTree = "<group>"; };
 		6E62238116AD011E003F5490 /* Campus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Campus.m; sourceTree = "<group>"; };
+		6EA422CC1720EEAC00558B70 /* CampusListSpec.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CampusListSpec.mm; sourceTree = "<group>"; };
 		6EA85D3A16A25B230036451C /* Specs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Specs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6EA85D4116A25B230036451C /* Specs-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Specs-Info.plist"; sourceTree = "<group>"; };
 		6EA85D4316A25B230036451C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -100,7 +97,6 @@
 		6EA85D5316A27BE00036451C /* Location.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Location.m; sourceTree = "<group>"; };
 		6EA85D5716A7C0120036451C /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		6EB03BA316D5E6B30046C440 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
-		6EC4EEA1171FB45000CCEDFC /* Specs2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Specs2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6ED2C45C16CA026C005B0A03 /* Swizzler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Swizzler.h; sourceTree = "<group>"; };
 		6ED2C45D16CA026C005B0A03 /* Swizzler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Swizzler.m; sourceTree = "<group>"; };
 		6ED2C45F16CA0631005B0A03 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
@@ -108,8 +104,6 @@
 		6ED2C46716CB5D0B005B0A03 /* OrganizationMock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OrganizationMock.h; path = ../Locus/OrganizationMock.h; sourceTree = "<group>"; };
 		6ED2C46816CB5D0B005B0A03 /* OrganizationMock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OrganizationMock.m; path = ../Locus/OrganizationMock.m; sourceTree = "<group>"; };
 		6ED2C46A16CC79EE005B0A03 /* sampleCampus.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sampleCampus.json; sourceTree = "<group>"; };
-		6ED2C46C16CF21B3005B0A03 /* FakeOrganization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FakeOrganization.h; sourceTree = "<group>"; };
-		6ED2C46D16CF21B3005B0A03 /* FakeOrganization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FakeOrganization.m; sourceTree = "<group>"; };
 		6ED2C46F16D09906005B0A03 /* SpecHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpecHelper.h; sourceTree = "<group>"; };
 		6ED2C47216D09ABD005B0A03 /* DatasourceSpec.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = DatasourceSpec.mm; sourceTree = "<group>"; };
 		6ED2C47416D09B4D005B0A03 /* Datasource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Datasource.h; sourceTree = "<group>"; };
@@ -146,16 +140,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		6EC4EE9E171FB45000CCEDFC /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				6EC4EEA2171FB45000CCEDFC /* UIKit.framework in Frameworks */,
-				6EC4EEA3171FB45000CCEDFC /* Foundation.framework in Frameworks */,
-				6EC4EEA4171FB45000CCEDFC /* CoreGraphics.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		6EF3B82F169D295F00BB1A35 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -180,12 +164,11 @@
 				6EA85D4A16A25B240036451C /* ExampleSpec.mm */,
 				6EA85D4016A25B230036451C /* Supporting Files */,
 				6EA85D5016A27AB40036451C /* LocationSpec.mm */,
-				6ED2C46C16CF21B3005B0A03 /* FakeOrganization.h */,
-				6ED2C46D16CF21B3005B0A03 /* FakeOrganization.m */,
 				6ED2C46F16D09906005B0A03 /* SpecHelper.h */,
 				6ED2C47216D09ABD005B0A03 /* DatasourceSpec.mm */,
 				6E5BA1A816EC45C50052ACBF /* CouchbaseHelperSpec.mm */,
 				6E05B66916F6DA6700008413 /* SpatialHelperSpec.mm */,
+				6EA422CC1720EEAC00558B70 /* CampusListSpec.mm */,
 			);
 			path = Specs;
 			sourceTree = "<group>";
@@ -218,7 +201,6 @@
 			children = (
 				6EF3B832169D295F00BB1A35 /* Locus.app */,
 				6EA85D3A16A25B230036451C /* Specs.app */,
-				6EC4EEA1171FB45000CCEDFC /* Specs2.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -303,23 +285,6 @@
 			productReference = 6EA85D3A16A25B230036451C /* Specs.app */;
 			productType = "com.apple.product-type.application";
 		};
-		6EC4EEA0171FB45000CCEDFC /* Specs2 */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 6EC4EEB4171FB45100CCEDFC /* Build configuration list for PBXNativeTarget "Specs2" */;
-			buildPhases = (
-				6EC4EE9D171FB45000CCEDFC /* Sources */,
-				6EC4EE9E171FB45000CCEDFC /* Frameworks */,
-				6EC4EE9F171FB45000CCEDFC /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = Specs2;
-			productName = Specs2;
-			productReference = 6EC4EEA1171FB45000CCEDFC /* Specs2.app */;
-			productType = "com.apple.product-type.application";
-		};
 		6EF3B831169D295F00BB1A35 /* Locus */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6EF3B859169D295F00BB1A35 /* Build configuration list for PBXNativeTarget "Locus" */;
@@ -360,7 +325,6 @@
 			targets = (
 				6EF3B831169D295F00BB1A35 /* Locus */,
 				6EA85D3916A25B230036451C /* Specs */,
-				6EC4EEA0171FB45000CCEDFC /* Specs2 */,
 			);
 		};
 /* End PBXProject section */
@@ -373,13 +337,6 @@
 				6EB03BA416D5E6B30046C440 /* Settings.bundle in Resources */,
 				6EA85D4416A25B230036451C /* InfoPlist.strings in Resources */,
 				6ED2C46B16CC79EE005B0A03 /* sampleCampus.json in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		6EC4EE9F171FB45000CCEDFC /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -404,6 +361,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6EA422CE1720FB7600558B70 /* CampusList.m in Sources */,
 				6E05B66D16F81D2700008413 /* SpatialHelper.m in Sources */,
 				6E05B66C16F8150000008413 /* LocusConstants.h in Sources */,
 				6ED2C47A16D1E19B005B0A03 /* ViewController.m in Sources */,
@@ -417,20 +375,11 @@
 				6EA85D5116A27AB40036451C /* LocationSpec.mm in Sources */,
 				6ED2C45E16CA026C005B0A03 /* Swizzler.m in Sources */,
 				6ED2C46916CB5D0B005B0A03 /* OrganizationMock.m in Sources */,
-				6ED2C46E16CF21B3005B0A03 /* FakeOrganization.m in Sources */,
 				6ED2C47316D09ABD005B0A03 /* DatasourceSpec.mm in Sources */,
 				6E5BA1A716EC3CB10052ACBF /* CouchbaseHelper.m in Sources */,
 				6E5BA1A916EC45C50052ACBF /* CouchbaseHelperSpec.mm in Sources */,
 				6E05B66A16F6DA6700008413 /* SpatialHelperSpec.mm in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		6EC4EE9D171FB45000CCEDFC /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				6EC4EEB81720796900CCEDFC /* ViewController.m in Sources */,
-				6EC4EEB7172078ED00CCEDFC /* AppDelegate.m in Sources */,
+				6EA422CD1720EEAC00558B70 /* CampusListSpec.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -543,57 +492,6 @@
 			};
 			name = Release;
 		};
-		6EC4EEB2171FB45100CCEDFC /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_OBJC_ARC = NO;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/Specs2/Frameworks\"",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Specs2/Specs2-Prefix.pch";
-				INFOPLIST_FILE = "Specs2/Specs2-Info.plist";
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-all_load",
-					"-lstdc++",
-				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				WRAPPER_EXTENSION = app;
-			};
-			name = Debug;
-		};
-		6EC4EEB3171FB45100CCEDFC /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_OBJC_ARC = NO;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/Specs2/Frameworks\"",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Specs2/Specs2-Prefix.pch";
-				INFOPLIST_FILE = "Specs2/Specs2-Info.plist";
-				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-all_load",
-					"-lstdc++",
-				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				WRAPPER_EXTENSION = app;
-			};
-			name = Release;
-		};
 		6EF3B857169D295F00BB1A35 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -679,14 +577,6 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
-		};
-		6EC4EEB4171FB45100CCEDFC /* Build configuration list for PBXNativeTarget "Specs2" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				6EC4EEB2171FB45100CCEDFC /* Debug */,
-				6EC4EEB3171FB45100CCEDFC /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
 		};
 		6EF3B82C169D295E00BB1A35 /* Build configuration list for PBXProject "Locus" */ = {
 			isa = XCConfigurationList;

@@ -1,7 +1,6 @@
 #import "SpecHelper.h"
 #import "AppDelegate.h"
 #import "Location.h"
-#import "FakeOrganization.h"
 #import "Campus.h"
 #import "User.h"
 #import "OrganizationMock.h"
@@ -61,11 +60,11 @@ describe(@"User locations", ^{
         [user.location longitude] should_not equal(NULL);
     });
     
-    it(@"should know the nearest Gap campus of user", ^{        
+    it(@"should know the nearest Gap campus of user", ^{
         NSString *spatialPoints = [[NSString alloc] initWithFormat:spatialPointsFormat,user.location.latitude, user.location.longitude];
         
         // query the spatial view
-        NSDictionary *spatialResponse = [cbHelper computeView:[appDelegate datasourceURL] withDatabase:@"locations" withParams:spatialPoints];
+        NSDictionary *spatialResponse = [cbHelper executeView:[appDelegate datasourceURL] withDatabase:@"locations" withView:@"/_design/main/" withParams:spatialPoints];
         
         // get the rows dictionary
         NSDictionary *rows = [spatialResponse objectForKey:@"rows"];
@@ -85,7 +84,7 @@ describe(@"User locations", ^{
                                    firstGapLocation.longitude];
         
         // query the spatial view
-        NSDictionary *spatialResponse = [cbHelper computeView:[appDelegate datasourceURL] withDatabase:@"locations" withParams:spatialPoints];
+        NSDictionary *spatialResponse = [cbHelper executeView:[appDelegate datasourceURL] withDatabase:@"locations" withView:@"/_design/main/" withParams:spatialPoints];
         
         // get the rows dictionary
         NSArray *rows = [spatialResponse objectForKey:@"rows"];

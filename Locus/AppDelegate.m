@@ -10,10 +10,12 @@
 #import "ViewController.h"
 
 NSString *kDatasourceKey        = @"couch_db_url";
+NSString *kOrganizationKey      = @"organization";
 
 @implementation AppDelegate
 
 @synthesize datasourceURL;
+@synthesize organization;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -61,7 +63,9 @@ NSString *kDatasourceKey        = @"couch_db_url";
 - (void)setupPreferences
 {
     NSString *datasourceValue = [[NSUserDefaults standardUserDefaults] stringForKey:kDatasourceKey];
-    if (datasourceValue == nil)
+    NSString *organizationValue = [[NSUserDefaults standardUserDefaults] stringForKey:kOrganizationKey];
+    
+    if (datasourceValue == nil || organizationValue == nil)
     {
         // no default values have been set, create them here based on what's in our Settings bundle info
         //
@@ -82,11 +86,16 @@ NSString *kDatasourceKey        = @"couch_db_url";
             {
                 datasourceURL = defaultValue;
             }
+            else if ([keyValueStr isEqualToString:kOrganizationKey])
+            {
+                organization = defaultValue;
+            }
         }
         
         // since no default values have been set (i.e. no preferences file created), create it here
         NSDictionary *appDefaults = [NSDictionary dictionaryWithObjectsAndKeys:
                                      datasourceURL, kDatasourceKey,
+                                     organization, kOrganizationKey,
                                      nil];
         
         [[NSUserDefaults standardUserDefaults] registerDefaults:appDefaults];
@@ -94,6 +103,7 @@ NSString *kDatasourceKey        = @"couch_db_url";
     }
     else {
         datasourceURL = datasourceValue;
+        organization = organizationValue;
     }
 }
 

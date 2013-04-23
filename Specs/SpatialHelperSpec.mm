@@ -1,6 +1,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
 
+#import "SpecHelper.h"
 #import "LocusConstants.h"
 #import "SpatialHelper.h"
 

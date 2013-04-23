@@ -7,10 +7,16 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Organization.h"
+
+#import "Campus.h"
 
 @interface CampusList : NSObject
 
--(NSDictionary*)campusListForOrganization:(Organization*)organization;
+-(id)initWithDatasource:(NSString*)datasource_ database:(NSString*)database_;
+-(bool)addCampus:(Campus*)campus;
+-(NSDictionary*)campusListForOrganization:(NSString*)organization;
+
+@property (nonatomic, strong) NSString *datasource;
+@property (nonatomic, strong) NSString *database;
 
 @end

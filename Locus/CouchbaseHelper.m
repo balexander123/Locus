@@ -86,12 +86,14 @@
     return bOK;
 }
 
--(NSDictionary *)computeView:(NSString*)dbURL withDatabase:(NSString*)database withParams:(NSString*)viewParams {
+-(NSDictionary *)executeView:(NSString*)dbURL withDatabase:(NSString*)database withView:(NSString*)view withParams:(NSString*)viewParams {
     NSMutableString *dbOperation;
     dbOperation = [[NSMutableString alloc] initWithString:dbURL];
     [dbOperation appendString:database];
-    [dbOperation appendString:@"/_design/main/"];
-    [dbOperation appendString:viewParams];
+    [dbOperation appendString:view];
+    if (viewParams != nil) {
+        [dbOperation appendString:viewParams];
+    }
     
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:dbOperation]];
     [request setHTTPMethod:@"GET"];

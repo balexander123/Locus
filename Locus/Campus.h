@@ -7,14 +7,16 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreLocation/CoreLocation.h>
 
 @class Location;
 
 @interface Campus : NSObject {
-    
+    CLLocationCoordinate2D location;
 }
 
 @property (nonatomic, strong) NSString *name;
-@property (nonatomic, strong) Location *location;
+@property (nonatomic, strong) NSString *description;
+@property (nonatomic, strong) NSString *organization;
 
 @end

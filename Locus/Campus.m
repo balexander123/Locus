@@ -10,4 +10,8 @@
 
 @implementation Campus
 
+@synthesize name;
+@synthesize description;
+@synthesize organization;
+
 @end
