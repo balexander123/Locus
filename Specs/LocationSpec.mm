@@ -4,6 +4,7 @@
 #import "Campus.h"
 #import "User.h"
 #import "OrganizationMock.h"
+#import "CouchConstants.h"
 #import "CouchbaseHelper.h"
 #import "LocusConstants.h"
 #import "SpatialHelper.h"
@@ -29,28 +30,27 @@ describe(@"User locations", ^{
     User *user = [[User alloc] init];
     user.location = location;
     
-    // Get the app delegate
-    AppDelegate *appDelegate = [[AppDelegate alloc] init];
-    [appDelegate setupPreferences];
-    
     // need a couchbase helper
     CouchbaseHelper *cbHelper = [[CouchbaseHelper alloc] init];
     
+    // get the database url and name from the couchdb singleton
+    CouchConstants *couchDBnames = [[CouchConstants alloc] init];
+    
     // create the locations db
     it(@"should create a locations database", ^{
-        bool bOK = [cbHelper databaseOperation:[appDelegate datasourceURL] withDatabase:@"locations" withMethod:@"PUT"];
+        bool bOK = [cbHelper databaseOperation:[couchDBnames baseDatasourceURL] withDatabase:[couchDBnames databaseName] withMethod:@"PUT"];
         expect(bOK).to(equal(true));
     });
     
     // add some locations
     it(@"should create a location view function", ^{
-        [cbHelper createData:[appDelegate datasourceURL] withDatabase:@"locations" withData:@"{\"loc\": [37.791269,-122.390978]}" andKey:@"SF2F"];
-        [cbHelper createData:[appDelegate datasourceURL] withDatabase:@"locations" withData:@"{\"loc\": [37.789353,-122.388747]}" andKey:@"SF1H"];
-        [cbHelper createData:[appDelegate datasourceURL] withDatabase:@"locations" withData:@"{\"loc\": [37.769494,-122.38688]}" andKey:@"SFMB"];
+        [cbHelper createData:[couchDBnames baseDatasourceURL] withDatabase:[couchDBnames databaseName] withData:@"{\"loc\": [37.791269,-122.390978]}" andKey:@"SF2F"];
+        [cbHelper createData:[couchDBnames baseDatasourceURL] withDatabase:[couchDBnames databaseName] withData:@"{\"loc\": [37.789353,-122.388747]}" andKey:@"SF1H"];
+        [cbHelper createData:[couchDBnames baseDatasourceURL] withDatabase:[couchDBnames databaseName] withData:@"{\"loc\": [37.769494,-122.38688]}" andKey:@"SFMB"];
     
         // create the spatial M/R emit function block as a JSON string
         NSString *viewData = [[NSString alloc]initWithString:@"{\"spatial\":{\"points\" : \"function(doc) {\\n if (doc.loc) {\\n emit({\\n type: \\\"Point\\\", \\n coordinates: [doc.loc[0], doc.loc[1]]\\n}, [doc._id, doc.loc]);\\n}};\"}}"];
-        bool bOK = [cbHelper createView:[appDelegate datasourceURL] withDatabase:@"locations" withData:viewData];
+        bool bOK = [cbHelper createView:[couchDBnames baseDatasourceURL] withDatabase:[couchDBnames databaseName] withData:viewData];
         expect(bOK).to(equal(true));
     });
     
@@ -64,7 +64,7 @@ describe(@"User locations", ^{
         NSString *spatialPoints = [[NSString alloc] initWithFormat:spatialPointsFormat,user.location.latitude, user.location.longitude];
         
         // query the spatial view
-        NSDictionary *spatialResponse = [cbHelper executeView:[appDelegate datasourceURL] withDatabase:@"locations" withView:@"/_design/main/" withParams:spatialPoints];
+        NSDictionary *spatialResponse = [cbHelper executeView:[couchDBnames baseDatasourceURL] withDatabase:[couchDBnames databaseName] withView:@"/_design/main/" withParams:spatialPoints];
         
         // get the rows dictionary
         NSDictionary *rows = [spatialResponse objectForKey:@"rows"];
@@ -84,7 +84,7 @@ describe(@"User locations", ^{
                                    firstGapLocation.longitude];
         
         // query the spatial view
-        NSDictionary *spatialResponse = [cbHelper executeView:[appDelegate datasourceURL] withDatabase:@"locations" withView:@"/_design/main/" withParams:spatialPoints];
+        NSDictionary *spatialResponse = [cbHelper executeView:[couchDBnames baseDatasourceURL] withDatabase:[couchDBnames databaseName] withView:@"/_design/main/" withParams:spatialPoints];
         
         // get the rows dictionary
         NSArray *rows = [spatialResponse objectForKey:@"rows"];
@@ -118,30 +118,26 @@ describe(@"User locations", ^{
         expect(abs(round(distance)-SIX_MILES)).to(BeLTE<double>(0.0000001));
         
         // clean up
-        BOOL bOK = [cbHelper databaseOperation:[appDelegate datasourceURL] withDatabase:@"locations" withMethod:@"DELETE"];
+        BOOL bOK = [cbHelper databaseOperation:[couchDBnames baseDatasourceURL] withDatabase:[couchDBnames databaseName] withMethod:@"DELETE"];
         
         expect(bOK).to(equal(true));
     });
     
     it(@"should have a spatial view", ^{
-        // Get the app delegate
-        AppDelegate *appDelegate = [[AppDelegate alloc] init];
-        [appDelegate setupPreferences];
-        
         // use the couchdb helper to create a locations database and spatial view
         CouchbaseHelper *cbHelper = [[CouchbaseHelper alloc] init];
         
         // create the locations db
-        bool bOK = [cbHelper databaseOperation:[appDelegate datasourceURL] withDatabase:@"locations" withMethod:@"PUT"];
+        bool bOK = [cbHelper databaseOperation:[couchDBnames baseDatasourceURL] withDatabase:[couchDBnames databaseName] withMethod:@"PUT"];
         expect(bOK).to(equal(true));
         
         // create the spatial M/R emit function block as a JSON string
         NSString *viewData = [[NSString alloc]initWithString:@"{\"spatial\":{\"points\" : \"function(doc) {\\n if (doc.loc) {\\n emit({\\n type: \\\"Point\\\", \\n coordinates: [doc.loc[0], doc.loc[1]]\\n}, [doc._id, doc.loc]);\\n}};\"}}"];
-        bOK = [cbHelper createView:[appDelegate datasourceURL] withDatabase:@"locations" withData:viewData];
+        bOK = [cbHelper createView:[couchDBnames baseDatasourceURL] withDatabase:[couchDBnames databaseName] withData:viewData];
         expect(bOK).to(equal(true));
         
         // clean up
-        bOK = [cbHelper databaseOperation:[appDelegate datasourceURL] withDatabase:@"locations" withMethod:@"DELETE"];
+        bOK = [cbHelper databaseOperation:[couchDBnames baseDatasourceURL] withDatabase:[couchDBnames databaseName] withMethod:@"DELETE"];
         
         expect(bOK).to(equal(true));
     });

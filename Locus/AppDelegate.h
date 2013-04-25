@@ -16,9 +16,5 @@
 @property (strong, nonatomic) Location *location;
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) ViewController *viewController;
-@property (strong, nonatomic) NSString *datasourceURL;
-@property (strong, nonatomic) NSString *organization;
-
-- (void)setupPreferences;
 
 @end

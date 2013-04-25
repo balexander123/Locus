@@ -34,6 +34,24 @@
 			<key>AutocorrectionType</key>
 			<string>No</string>
 			<key>DefaultValue</key>
+			<string>locations</string>
+			<key>IsSecure</key>
+			<false/>
+			<key>Key</key>
+			<string>database</string>
+			<key>KeyboardType</key>
+			<string>Alphabet</string>
+			<key>Title</key>
+			<string>CouchDB Database</string>
+			<key>Type</key>
+			<string>PSTextFieldSpecifier</string>
+		</dict>
+		<dict>
+			<key>AutocapitalizationType</key>
+			<string>None</string>
+			<key>AutocorrectionType</key>
+			<string>No</string>
+			<key>DefaultValue</key>
 			<string>Gap</string>
 			<key>IsSecure</key>
 			<false/>

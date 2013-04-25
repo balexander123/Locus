@@ -8,19 +8,12 @@
 
 #import "AppDelegate.h"
 #import "ViewController.h"
-
-NSString *kDatasourceKey        = @"couch_db_url";
-NSString *kOrganizationKey      = @"organization";
+#import "CouchConstants.h"
 
 @implementation AppDelegate
 
-@synthesize datasourceURL;
-@synthesize organization;
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{
-    [self setupPreferences];
-    
+{    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
@@ -58,53 +51,6 @@ NSString *kOrganizationKey      = @"organization";
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-}
-
-- (void)setupPreferences
-{
-    NSString *datasourceValue = [[NSUserDefaults standardUserDefaults] stringForKey:kDatasourceKey];
-    NSString *organizationValue = [[NSUserDefaults standardUserDefaults] stringForKey:kOrganizationKey];
-    
-    if (datasourceValue == nil || organizationValue == nil)
-    {
-        // no default values have been set, create them here based on what's in our Settings bundle info
-        //
-        NSString *pathStr = [[NSBundle mainBundle] bundlePath];
-        NSString *settingsBundlePath = [pathStr stringByAppendingPathComponent:@"Settings.bundle"];
-        NSString *finalPath = [settingsBundlePath stringByAppendingPathComponent:@"Root.plist"];
-        
-        NSDictionary *settingsDict = [NSDictionary dictionaryWithContentsOfFile:finalPath];
-        NSArray *prefSpecifierArray = [settingsDict objectForKey:@"PreferenceSpecifiers"];
-        
-        NSDictionary *prefItem;
-        for (prefItem in prefSpecifierArray)
-        {
-            NSString *keyValueStr = [prefItem objectForKey:@"Key"];
-            id defaultValue = [prefItem objectForKey:@"DefaultValue"];
-            
-            if ([keyValueStr isEqualToString:kDatasourceKey])
-            {
-                datasourceURL = defaultValue;
-            }
-            else if ([keyValueStr isEqualToString:kOrganizationKey])
-            {
-                organization = defaultValue;
-            }
-        }
-        
-        // since no default values have been set (i.e. no preferences file created), create it here
-        NSDictionary *appDefaults = [NSDictionary dictionaryWithObjectsAndKeys:
-                                     datasourceURL, kDatasourceKey,
-                                     organization, kOrganizationKey,
-                                     nil];
-        
-        [[NSUserDefaults standardUserDefaults] registerDefaults:appDefaults];
-        [[NSUserDefaults standardUserDefaults] synchronize];
-    }
-    else {
-        datasourceURL = datasourceValue;
-        organization = organizationValue;
-    }
 }
 
 @end
