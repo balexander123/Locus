@@ -1,7 +1,7 @@
 #import "SpecHelper.h"
 #import "AppDelegate.h"
 #import "Datasource.h"
-#import "CouchbaseHelper.h"
+#import "CouchDBHelper.h"
 #import "CouchConstants.h"
 
 using namespace Cedar::Matchers;
@@ -40,7 +40,7 @@ describe(@"Datasource", ^{
     
     it(@"should have a locations database", ^{
         // need a couchbase helper
-        CouchbaseHelper *cbHelper = [[CouchbaseHelper alloc] init];
+        CouchDBHelper *cbHelper = [[CouchDBHelper alloc] init];
         
         // for local dev testing, there should be a locations db created:
         // curl -X PUT http://127.0.0.1:5984/locations
@@ -55,7 +55,7 @@ describe(@"Datasource", ^{
     
     it(@"should create a database entry",^{
         // need a couchbase helper
-        CouchbaseHelper *cbHelper = [[CouchbaseHelper alloc] init];
+        CouchDBHelper *cbHelper = [[CouchDBHelper alloc] init];
         
         // create the locations db
         bool bOK = [cbHelper databaseOperation:[couchDBnames baseDatasourceURL] withDatabase:[couchDBnames databaseName] withMethod:@"PUT"];

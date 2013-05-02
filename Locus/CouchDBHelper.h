@@ -1,5 +1,5 @@
 //
-//  CouchbaseHelper.h
+//  CouchDBHelper.h
 //  Locus
 //
 //  Created by barry alexander on 3/4/13.
@@ -8,11 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
-@interface CouchbaseHelper : NSObject
+@interface CouchDBHelper : NSObject
 
 -(bool)databaseOperation:(NSString*)dbURL withDatabase:(NSString*)database withMethod:(NSString*)method;
 -(NSString*)uuid;
--(bool)createView:(NSString*)dbURL withDatabase:(NSString*)database withData:(NSString*)viewData;
+-(bool)createView:(NSString*)dbURL withDatabase:(NSString*)database withView:(NSString*)view withData:(NSString*)viewData;
 -(bool)createData:(NSString*)dbURL withDatabase:(NSString*)database withData:(NSString*)data andKey:(NSString*)key;
 -(NSDictionary *)executeView:(NSString*)dbURL withDatabase:(NSString*)database withView:(NSString*)view withParams:(NSString*)viewParams;
 

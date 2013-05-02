@@ -1,14 +1,14 @@
 //
-//  CouchbaseHelper.m
+//  CouchDBHelper.m
 //  Locus
 //
 //  Created by barry alexander on 3/4/13.
 //  Copyright (c) 2013 barry alexander. All rights reserved.
 //
 
-#import "CouchbaseHelper.h"
+#import "CouchDBHelper.h"
 
-@implementation CouchbaseHelper
+@implementation CouchDBHelper
 
 -(bool)databaseOperation:(NSString*)dbURL withDatabase:(NSString*)database withMethod:(NSString*)method {
     
@@ -35,14 +35,14 @@
     return UUID;
 }
 
--(bool)createView:(NSString*)dbURL withDatabase:(NSString*)database withData:(NSString*)viewData {
+-(bool)createView:(NSString*)dbURL withDatabase:(NSString*)database withView:(NSString*)view withData:(NSString*)viewData {
     
     NSData *postData = [viewData dataUsingEncoding:NSUTF8StringEncoding];
     
     NSMutableString *dbOperation;
     dbOperation = [[NSMutableString alloc] initWithString:dbURL];
     [dbOperation appendString:database];
-    [dbOperation appendString:@"/_design/main"];
+    [dbOperation appendString:view];
     
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:dbOperation]];
     [request setHTTPMethod:@"PUT"];

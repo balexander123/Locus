@@ -1,7 +1,7 @@
 #import "SpecHelper.h"
 #import "ApplicationConstants.h"
 #import "CouchConstants.h"
-#import "CouchbaseHelper.h"
+#import "CouchDBHelper.h"
 #import "CampusList.h"
 
 using namespace Cedar::Matchers;
@@ -23,7 +23,7 @@ describe(@"CampusList", ^{
         campusList = [[CampusList alloc] initWithDatasource:[couchDBnames baseDatasourceURL] database:[couchDBnames databaseName]];
         
         // create locations db
-        CouchbaseHelper *cbHelper = [[CouchbaseHelper alloc] init];
+        CouchDBHelper *cbHelper = [[CouchDBHelper alloc] init];
         bool bOK = [cbHelper databaseOperation:[couchDBnames baseDatasourceURL] withDatabase:[couchDBnames databaseName] withMethod:@"PUT"];
         expect(bOK).to(equal(true));
         
@@ -42,17 +42,19 @@ describe(@"CampusList", ^{
         
         Campus *petaluma = [[Campus alloc] init];
         [petaluma setName:@"Petaluma"];
-        [petaluma setDescription:@"Description"];
+        [petaluma setDescription:@"Petaluma Campus"];
         [petaluma setOrganization:[appCounstants organization]];
         [campusList addCampus:petaluma];
         
         // create the view to query by organization
-        NSString *data = [[NSString alloc] initWithString:@"{\"language\": \"javascript\", \"views\": { \"by_organization\" : {\"map\": \"function(doc) { if (doc.type == \"Campus\" && doc.organization == \"Gap\") { emit(doc.description, doc); } }\" } } }"];
-        bOK = [cbHelper createView:[couchDBnames baseDatasourceURL] withDatabase:@"locations/_design/campus" withData:data];
+        NSString *data = [[NSString alloc] initWithString:@"{\"language\": \"javascript\", \"views\": { \"by_organization\" : {\"map\": \"function(doc) { if (doc.type == \\\"Campus\\\" && doc.organization == \\\"Gap\\\") { emit(doc.description, doc); } }\" } } }"];
+        NSLog(@"by_organization view: %@", data);
+        bOK = [cbHelper createView:[couchDBnames baseDatasourceURL] withDatabase:[couchDBnames databaseName] withView:@"/_design/campus" withData:data];
+        NSLog(@"createView status: %d", bOK);
     });
     
     afterEach(^{
-        CouchbaseHelper *cbHelper = [[CouchbaseHelper alloc] init];
+        CouchDBHelper *cbHelper = [[CouchDBHelper alloc] init];
         bool bOK = [cbHelper databaseOperation:[couchDBnames baseDatasourceURL] withDatabase:[couchDBnames databaseName] withMethod:@"DELETE"];
         expect(bOK).to(equal(true));
     });
@@ -62,6 +64,16 @@ describe(@"CampusList", ^{
         [appCounstants organization] should equal(@"Gap");
         NSDictionary *campusDict = [campusList campusListForOrganization:[appCounstants organization]];
         expect(campusDict.count).to(BeGreaterThan<int>(0));
+        // get the rows dictionary
+        NSArray *rows = [campusDict objectForKey:@"rows"];
+        expect(rows.count).to(equal(3));
+        NSMutableArray *campusArray = [[NSMutableArray alloc] init];
+        for (NSDictionary *element in rows) {
+            [campusArray addObject:[element objectForKey:@"id"]];
+        }
+        expect([campusArray objectAtIndex:0]).to(equal(@"Petaluma"));
+        expect([campusArray objectAtIndex:1]).to(equal(@"OH"));
+        expect([campusArray objectAtIndex:2]).to(equal(@"SF"));
     });
 });
 

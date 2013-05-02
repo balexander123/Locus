@@ -1,16 +1,16 @@
 #import "SpecHelper.h"
-#import "CouchbaseHelper.h"
+#import "CouchDBHelper.h"
 
 using namespace Cedar::Matchers;
 using namespace Cedar::Doubles;
 
-SPEC_BEGIN(CouchbaseHelperSpec)
+SPEC_BEGIN(CouchDBHelperSpec)
 
-describe(@"CouchbaseHelper", ^{
-    __block CouchbaseHelper *cbHelper;
+describe(@"CouchDBHelper", ^{
+    __block CouchDBHelper *cbHelper;
 
     beforeEach(^{
-        cbHelper = [[CouchbaseHelper alloc] init];
+        cbHelper = [[CouchDBHelper alloc] init];
     });
     
     it(@"should generate a UUID",^{

@@ -5,7 +5,7 @@
 #import "User.h"
 #import "OrganizationMock.h"
 #import "CouchConstants.h"
-#import "CouchbaseHelper.h"
+#import "CouchDBHelper.h"
 #import "LocusConstants.h"
 #import "SpatialHelper.h"
 
@@ -31,7 +31,7 @@ describe(@"User locations", ^{
     user.location = location;
     
     // need a couchbase helper
-    CouchbaseHelper *cbHelper = [[CouchbaseHelper alloc] init];
+    CouchDBHelper *cbHelper = [[CouchDBHelper alloc] init];
     
     // get the database url and name from the couchdb singleton
     CouchConstants *couchDBnames = [[CouchConstants alloc] init];
@@ -50,7 +50,7 @@ describe(@"User locations", ^{
     
         // create the spatial M/R emit function block as a JSON string
         NSString *viewData = [[NSString alloc]initWithString:@"{\"spatial\":{\"points\" : \"function(doc) {\\n if (doc.loc) {\\n emit({\\n type: \\\"Point\\\", \\n coordinates: [doc.loc[0], doc.loc[1]]\\n}, [doc._id, doc.loc]);\\n}};\"}}"];
-        bool bOK = [cbHelper createView:[couchDBnames baseDatasourceURL] withDatabase:[couchDBnames databaseName] withData:viewData];
+        bool bOK = [cbHelper createView:[couchDBnames baseDatasourceURL] withDatabase:[couchDBnames databaseName] withView:@"/_design/main" withData:viewData];
         expect(bOK).to(equal(true));
     });
     
@@ -125,7 +125,7 @@ describe(@"User locations", ^{
     
     it(@"should have a spatial view", ^{
         // use the couchdb helper to create a locations database and spatial view
-        CouchbaseHelper *cbHelper = [[CouchbaseHelper alloc] init];
+        CouchDBHelper *cbHelper = [[CouchDBHelper alloc] init];
         
         // create the locations db
         bool bOK = [cbHelper databaseOperation:[couchDBnames baseDatasourceURL] withDatabase:[couchDBnames databaseName] withMethod:@"PUT"];
@@ -133,7 +133,7 @@ describe(@"User locations", ^{
         
         // create the spatial M/R emit function block as a JSON string
         NSString *viewData = [[NSString alloc]initWithString:@"{\"spatial\":{\"points\" : \"function(doc) {\\n if (doc.loc) {\\n emit({\\n type: \\\"Point\\\", \\n coordinates: [doc.loc[0], doc.loc[1]]\\n}, [doc._id, doc.loc]);\\n}};\"}}"];
-        bOK = [cbHelper createView:[couchDBnames baseDatasourceURL] withDatabase:[couchDBnames databaseName] withData:viewData];
+        bOK = [cbHelper createView:[couchDBnames baseDatasourceURL] withDatabase:[couchDBnames databaseName] withView:@"/_design/main" withData:viewData];
         expect(bOK).to(equal(true));
         
         // clean up

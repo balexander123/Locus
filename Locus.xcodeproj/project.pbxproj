@@ -11,8 +11,8 @@
 		6E05B66A16F6DA6700008413 /* SpatialHelperSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6E05B66916F6DA6700008413 /* SpatialHelperSpec.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		6E05B66C16F8150000008413 /* LocusConstants.h in Sources */ = {isa = PBXBuildFile; fileRef = 6E05B66B16F8141000008413 /* LocusConstants.h */; };
 		6E05B66D16F81D2700008413 /* SpatialHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E05B66716F6CDDB00008413 /* SpatialHelper.m */; };
-		6E5BA1A616EC3CB10052ACBF /* CouchbaseHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5BA1A516EC3CB10052ACBF /* CouchbaseHelper.m */; };
-		6E5BA1A716EC3CB10052ACBF /* CouchbaseHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5BA1A516EC3CB10052ACBF /* CouchbaseHelper.m */; };
+		6E5BA1A616EC3CB10052ACBF /* CouchDBHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5BA1A516EC3CB10052ACBF /* CouchDBHelper.m */; };
+		6E5BA1A716EC3CB10052ACBF /* CouchDBHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5BA1A516EC3CB10052ACBF /* CouchDBHelper.m */; };
 		6E5BA1A916EC45C50052ACBF /* CouchbaseHelperSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6E5BA1A816EC45C50052ACBF /* CouchbaseHelperSpec.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		6E62237816AA5F39003F5490 /* BuildingList.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E62237716AA5F39003F5490 /* BuildingList.m */; };
 		6E62237C16ACFDCE003F5490 /* Organization.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E62237B16ACFDCD003F5490 /* Organization.m */; };
@@ -77,8 +77,8 @@
 		6E05B66716F6CDDB00008413 /* SpatialHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpatialHelper.m; sourceTree = "<group>"; };
 		6E05B66916F6DA6700008413 /* SpatialHelperSpec.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SpatialHelperSpec.mm; sourceTree = "<group>"; };
 		6E05B66B16F8141000008413 /* LocusConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocusConstants.h; sourceTree = "<group>"; };
-		6E5BA1A416EC3CB10052ACBF /* CouchbaseHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CouchbaseHelper.h; sourceTree = "<group>"; };
-		6E5BA1A516EC3CB10052ACBF /* CouchbaseHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CouchbaseHelper.m; sourceTree = "<group>"; };
+		6E5BA1A416EC3CB10052ACBF /* CouchDBHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CouchDBHelper.h; sourceTree = "<group>"; };
+		6E5BA1A516EC3CB10052ACBF /* CouchDBHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CouchDBHelper.m; sourceTree = "<group>"; };
 		6E5BA1A816EC45C50052ACBF /* CouchbaseHelperSpec.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CouchbaseHelperSpec.mm; sourceTree = "<group>"; };
 		6E62237616AA5F39003F5490 /* BuildingList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuildingList.h; sourceTree = "<group>"; };
 		6E62237716AA5F39003F5490 /* BuildingList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuildingList.m; sourceTree = "<group>"; };
@@ -249,8 +249,8 @@
 				6ED2C46016CA0631005B0A03 /* User.m */,
 				6ED2C46A16CC79EE005B0A03 /* sampleCampus.json */,
 				6ED2C47416D09B4D005B0A03 /* Datasource.h */,
-				6E5BA1A416EC3CB10052ACBF /* CouchbaseHelper.h */,
-				6E5BA1A516EC3CB10052ACBF /* CouchbaseHelper.m */,
+				6E5BA1A416EC3CB10052ACBF /* CouchDBHelper.h */,
+				6E5BA1A516EC3CB10052ACBF /* CouchDBHelper.m */,
 				6E05B66616F6CDDB00008413 /* SpatialHelper.h */,
 				6E05B66716F6CDDB00008413 /* SpatialHelper.m */,
 				6E05B66B16F8141000008413 /* LocusConstants.h */,
@@ -390,7 +390,7 @@
 				6ED2C45E16CA026C005B0A03 /* Swizzler.m in Sources */,
 				6ED2C46916CB5D0B005B0A03 /* OrganizationMock.m in Sources */,
 				6ED2C47316D09ABD005B0A03 /* DatasourceSpec.mm in Sources */,
-				6E5BA1A716EC3CB10052ACBF /* CouchbaseHelper.m in Sources */,
+				6E5BA1A716EC3CB10052ACBF /* CouchDBHelper.m in Sources */,
 				6E5BA1A916EC45C50052ACBF /* CouchbaseHelperSpec.mm in Sources */,
 				6E05B66A16F6DA6700008413 /* SpatialHelperSpec.mm in Sources */,
 				6EA422CD1720EEAC00558B70 /* CampusListSpec.mm in Sources */,
@@ -410,7 +410,7 @@
 				6E62237F16AD00EF003F5490 /* CampusList.m in Sources */,
 				6E62238216AD011E003F5490 /* Campus.m in Sources */,
 				6ED2C46116CA0631005B0A03 /* User.m in Sources */,
-				6E5BA1A616EC3CB10052ACBF /* CouchbaseHelper.m in Sources */,
+				6E5BA1A616EC3CB10052ACBF /* CouchDBHelper.m in Sources */,
 				6E05B66816F6CDDB00008413 /* SpatialHelper.m in Sources */,
 				6EA422D11727286300558B70 /* CouchConstants.m in Sources */,
 				6EA422D51727969900558B70 /* ApplicationConstants.m in Sources */,
