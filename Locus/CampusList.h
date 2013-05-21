@@ -14,7 +14,7 @@
 
 -(id)initWithDatasource:(NSString*)datasource_ database:(NSString*)database_;
 -(bool)addCampus:(Campus*)campus;
--(NSDictionary*)campusListForOrganization:(NSString*)organization;
+-(NSArray*)campusListForOrganization:(NSString*)organization;
 
 @property (nonatomic, strong) NSString *datasource;
 @property (nonatomic, strong) NSString *database;

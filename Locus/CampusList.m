@@ -40,12 +40,15 @@
     return bOk;
 }
 
--(NSDictionary*)campusListForOrganization:(NSString*)organization {
+-(NSArray*)campusListForOrganization:(NSString*)organization {
     CouchDBHelper *cbHelper = [[CouchDBHelper alloc] init];
     
-    NSDictionary *campusList = [cbHelper executeView:datasource withDatabase:database withView:@"/_design/campus/_view/by_organization" withParams:nil];
+    NSDictionary *campusDict = [cbHelper executeView:datasource withDatabase:database withView:@"/_design/campus/_view/by_organization" withParams:nil];
     
-    return campusList;
+    // get the rows from the dictionary
+    NSArray *rows = [campusDict objectForKey:@"rows"];
+    
+    return rows;
 }
 
 @end

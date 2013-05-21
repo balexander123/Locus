@@ -8,6 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+@class CampusList;
+@class CouchConstants;
+@class ApplicationConstants;
+
+@interface ViewController : UIViewController <UITableViewDataSource>
+
+@property (strong, nonatomic) IBOutlet UITableView *campusTableView;
+@property (strong, readonly) ApplicationConstants *appConstants;
+@property (strong, readonly) CouchConstants *couchConstants;
+@property (strong, readonly) CampusList *campusList;
 
 @end

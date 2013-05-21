@@ -46,6 +46,13 @@ describe(@"CampusList", ^{
         [petaluma setOrganization:[appCounstants organization]];
         [campusList addCampus:petaluma];
         
+        // let's add a campus from another organization
+        Campus *poa = [[Campus alloc] init];
+        [poa setName:@"POA"];
+        [poa setDescription:@"Porto Alegre"];
+        [poa setOrganization:@"Thoughtworks"];
+        [campusList addCampus:poa];
+        
         // create the view to query by organization
         NSString *data = [[NSString alloc] initWithString:@"{\"language\": \"javascript\", \"views\": { \"by_organization\" : {\"map\": \"function(doc) { if (doc.type == \\\"Campus\\\" && doc.organization == \\\"Gap\\\") { emit(doc.description, doc); } }\" } } }"];
         NSLog(@"by_organization view: %@", data);
@@ -62,17 +69,15 @@ describe(@"CampusList", ^{
     // given an organization
     it(@"should have a list of campus for the organization",^{
         [appCounstants organization] should equal(@"Gap");
-        NSDictionary *campusDict = [campusList campusListForOrganization:[appCounstants organization]];
-        expect(campusDict.count).to(BeGreaterThan<int>(0));
-        // get the rows dictionary
-        NSArray *rows = [campusDict objectForKey:@"rows"];
+        NSArray *rows = [campusList campusListForOrganization:[appCounstants organization]];
         expect(rows.count).to(equal(3));
         NSMutableArray *campusArray = [[NSMutableArray alloc] init];
         for (NSDictionary *element in rows) {
             [campusArray addObject:[element objectForKey:@"id"]];
+            NSLog(@"campus: %@", [element objectForKey:@"id"]);
         }
-        expect([campusArray objectAtIndex:0]).to(equal(@"Petaluma"));
-        expect([campusArray objectAtIndex:1]).to(equal(@"OH"));
+        expect([campusArray objectAtIndex:0]).to(equal(@"OH"));
+        expect([campusArray objectAtIndex:1]).to(equal(@"Petaluma"));
         expect([campusArray objectAtIndex:2]).to(equal(@"SF"));
     });
 });

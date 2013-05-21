@@ -8,7 +8,6 @@
 
 #import "AppDelegate.h"
 #import "ViewController.h"
-#import "CouchConstants.h"
 
 @implementation AppDelegate
 
@@ -20,7 +19,7 @@
         self.viewController = [[ViewController alloc] initWithNibName:@"ViewController_iPhone" bundle:nil];
     } else {
         self.viewController = [[ViewController alloc] initWithNibName:@"ViewController_iPad" bundle:nil];
-    }
+    }    
     self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];
     return YES;
