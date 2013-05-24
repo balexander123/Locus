@@ -9,7 +9,7 @@
 #import "ViewController.h"
 #import "ApplicationConstants.h"
 #import "CouchConstants.h"
-#import "CampusList.h"
+#import "Campus.h"
 
 
 @interface ViewController ()
@@ -20,7 +20,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
-    NSArray *rows = [_campusList campusListForOrganization:[_appConstants organization]];
+    NSArray *rows = [_campus campusListForOrganization:[_appConstants organization]];
     
     NSLog(@"campus count: %d\n", rows.count);
     
@@ -37,7 +37,7 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"CampusCell"];
     }
     
-    NSArray *rows = [_campusList campusListForOrganization:[_appConstants organization]];
+    NSArray *rows = [_campus campusListForOrganization:[_appConstants organization]];
     
     NSDictionary *element = [rows objectAtIndex:[indexPath row]];
     
@@ -54,7 +54,7 @@
     // Get app constants
     _appConstants = [[ApplicationConstants alloc] init];
     
-    _campusList = [[CampusList alloc] initWithDatasource:[_couchConstants baseDatasourceURL] database:[_couchConstants databaseName]];
+    _campus = [[Campus alloc] initWithDatasource:[_couchConstants baseDatasourceURL] database:[_couchConstants databaseName]];
 
 }
 

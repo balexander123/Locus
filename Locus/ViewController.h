@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@class CampusList;
+@class Campus;
 @class CouchConstants;
 @class ApplicationConstants;
 
@@ -17,6 +17,6 @@
 @property (strong, nonatomic) IBOutlet UITableView *campusTableView;
 @property (strong, readonly) ApplicationConstants *appConstants;
 @property (strong, readonly) CouchConstants *couchConstants;
-@property (strong, readonly) CampusList *campusList;
+@property (strong, readonly) Campus *campus;
 
 @end
