@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BuildingViewController : UITableViewController
+@interface BuildingViewController : UIViewController <UITableViewDataSource>
+
+@property (strong, nonatomic) IBOutlet UIViewController *buildingTableView;
 
 @end
