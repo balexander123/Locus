@@ -20,6 +20,7 @@
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSString *description;
 @property (nonatomic, strong) NSString *organization;
+@property (nonatomic, strong) NSArray *buildings;
 
 -(NSArray*)campusListForOrganization:(NSString*)organization;
 

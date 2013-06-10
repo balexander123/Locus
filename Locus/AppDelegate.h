@@ -9,12 +9,15 @@
 #import <UIKit/UIKit.h>
 #import "Location.h"
 
-@class ViewController;
+@class CampusViewController;
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) Location *location;
 @property (strong, nonatomic) UIWindow *window;
-@property (strong, nonatomic) ViewController *viewController;
+@property (strong, nonatomic) CampusViewController *campusViewController;
+@property (strong, nonatomic) UITabBarController *locusController;
+@property (strong, nonatomic) UINavigationController *campusNavController;
+@property (strong, nonatomic) UINavigationController *buildingNavController;
 
 @end

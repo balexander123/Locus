@@ -3,7 +3,6 @@
 #import "Location.h"
 #import "Campus.h"
 #import "User.h"
-#import "OrganizationMock.h"
 #import "CouchConstants.h"
 #import "CouchDBHelper.h"
 #import "LocusConstants.h"
@@ -64,7 +63,7 @@ describe(@"User locations", ^{
         NSString *spatialPoints = [[NSString alloc] initWithFormat:spatialPointsFormat,user.location.latitude, user.location.longitude];
         
         // query the spatial view
-        NSDictionary *spatialResponse = [cbHelper executeView:[couchDBnames baseDatasourceURL] withDatabase:[couchDBnames databaseName] withView:@"/_design/main/" withParams:spatialPoints];
+        NSDictionary *spatialResponse = [cbHelper execute:[couchDBnames baseDatasourceURL] withDatabase:[couchDBnames databaseName] withView:@"/_design/main/" withParams:spatialPoints];
         
         // get the rows dictionary
         NSDictionary *rows = [spatialResponse objectForKey:@"rows"];
@@ -84,7 +83,7 @@ describe(@"User locations", ^{
                                    firstGapLocation.longitude];
         
         // query the spatial view
-        NSDictionary *spatialResponse = [cbHelper executeView:[couchDBnames baseDatasourceURL] withDatabase:[couchDBnames databaseName] withView:@"/_design/main/" withParams:spatialPoints];
+        NSDictionary *spatialResponse = [cbHelper execute:[couchDBnames baseDatasourceURL] withDatabase:[couchDBnames databaseName] withView:@"/_design/main/" withParams:spatialPoints];
         
         // get the rows dictionary
         NSArray *rows = [spatialResponse objectForKey:@"rows"];

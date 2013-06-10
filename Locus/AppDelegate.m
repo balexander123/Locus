@@ -7,20 +7,28 @@
 //
 
 #import "AppDelegate.h"
-#import "ViewController.h"
+#import "CampusViewController.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    // Override point for customization after application launch.
+    
+    self.locusController = [[UITabBarController alloc] init];
+    self.campusNavController = [[UINavigationController alloc] init];
+    self.buildingNavController = [[UINavigationController alloc] init];
+    
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-        self.viewController = [[ViewController alloc] initWithNibName:@"ViewController_iPhone" bundle:nil];
+        self.campusViewController = [[CampusViewController alloc] initWithNibName:@"CampusViewController_iPhone" bundle:nil];
     } else {
-        self.viewController = [[ViewController alloc] initWithNibName:@"ViewController_iPad" bundle:nil];
-    }    
-    self.window.rootViewController = self.viewController;
+        self.campusViewController = [[CampusViewController alloc] initWithNibName:@"CampusViewController_iPad" bundle:nil];
+    }
+    [self.campusNavController pushViewController:self.campusViewController animated:NO];
+    
+    self.locusController.viewControllers = [NSArray arrayWithObjects:_campusNavController, _buildingNavController, nil];
+    
+    self.window.rootViewController = self.locusController;
     [self.window makeKeyAndVisible];
     return YES;
 }

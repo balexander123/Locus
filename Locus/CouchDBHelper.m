@@ -86,7 +86,7 @@
     return bOK;
 }
 
--(NSDictionary *)executeView:(NSString*)dbURL withDatabase:(NSString*)database withView:(NSString*)view withParams:(NSString*)viewParams {
+-(NSDictionary *)execute:(NSString*)dbURL withDatabase:(NSString*)database withView:(NSString*)view withParams:(NSString*)viewParams {
     NSMutableString *dbOperation;
     dbOperation = [[NSMutableString alloc] initWithString:dbURL];
     [dbOperation appendString:database];

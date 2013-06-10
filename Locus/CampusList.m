@@ -43,7 +43,7 @@
 -(NSArray*)campusListForOrganization:(NSString*)organization {
     CouchDBHelper *cbHelper = [[CouchDBHelper alloc] init];
     
-    NSDictionary *campusDict = [cbHelper executeView:datasource withDatabase:database withView:@"/_design/campus/_view/by_organization" withParams:nil];
+    NSDictionary *campusDict = [cbHelper execute:datasource withDatabase:database withView:@"/_design/campus/_view/by_organization" withParams:nil];
     
     // get the rows from the dictionary
     NSArray *rows = [campusDict objectForKey:@"rows"];
