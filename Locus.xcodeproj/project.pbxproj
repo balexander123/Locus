@@ -26,6 +26,7 @@
 		6E62238516AD0910003F5490 /* Campus.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E62238116AD011E003F5490 /* Campus.m */; };
 		6E6F12DC174F1F7600E23374 /* CampusSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6E6F12DB174F1F7600E23374 /* CampusSpec.mm */; };
 		6E72F2CB1728E611001D8BF6 /* ApplicationConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EA422D41727969800558B70 /* ApplicationConstants.m */; };
+		6E9127B91779562A00F735D4 /* MockCampus.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E9127B81779562A00F735D4 /* MockCampus.m */; };
 		6EA422CE1720FB7600558B70 /* CampusList.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E62237E16AD00EF003F5490 /* CampusList.m */; };
 		6EA422D11727286300558B70 /* CouchConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EA422D01727286300558B70 /* CouchConstants.m */; };
 		6EA422D21727562800558B70 /* CouchConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EA422D01727286300558B70 /* CouchConstants.m */; };
@@ -95,6 +96,8 @@
 		6E62238116AD011E003F5490 /* Campus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Campus.m; sourceTree = "<group>"; };
 		6E6F12DA174F1B9500E23374 /* CouchCRUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CouchCRUD.h; sourceTree = "<group>"; };
 		6E6F12DB174F1F7600E23374 /* CampusSpec.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CampusSpec.mm; sourceTree = "<group>"; };
+		6E9127B71779562A00F735D4 /* MockCampus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MockCampus.h; sourceTree = "<group>"; };
+		6E9127B81779562A00F735D4 /* MockCampus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MockCampus.m; sourceTree = "<group>"; };
 		6EA422CF1727286300558B70 /* CouchConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CouchConstants.h; sourceTree = "<group>"; };
 		6EA422D01727286300558B70 /* CouchConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CouchConstants.m; sourceTree = "<group>"; };
 		6EA422D31727969800558B70 /* ApplicationConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplicationConstants.h; sourceTree = "<group>"; };
@@ -178,6 +181,8 @@
 				6E05B66916F6DA6700008413 /* SpatialHelperSpec.mm */,
 				6E6F12DB174F1F7600E23374 /* CampusSpec.mm */,
 				6E352CDC1765349E00D2B7E7 /* CampusViewControllerSpec.mm */,
+				6E9127B71779562A00F735D4 /* MockCampus.h */,
+				6E9127B81779562A00F735D4 /* MockCampus.m */,
 			);
 			path = Specs;
 			sourceTree = "<group>";
@@ -397,6 +402,7 @@
 				6E05B66A16F6DA6700008413 /* SpatialHelperSpec.mm in Sources */,
 				6E6F12DC174F1F7600E23374 /* CampusSpec.mm in Sources */,
 				6E352CDD1765349E00D2B7E7 /* CampusViewControllerSpec.mm in Sources */,
+				6E9127B91779562A00F735D4 /* MockCampus.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
