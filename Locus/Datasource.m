@@ -10,4 +10,16 @@
 
 @implementation Datasource
 
+@synthesize datasource;
+@synthesize database;
+
+-(id)initWithDatasource:(NSString*)datasource_ database:(NSString*)database_ {
+    self = [super init];
+    if (self) {
+        datasource = datasource_;
+        database = database_;
+    }
+    return self;
+}
+
 @end

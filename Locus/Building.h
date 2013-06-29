@@ -7,7 +7,21 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreLocation/CoreLocation.h>
 
-@interface Building : NSObject
+#import "Datasource.h"
+#import "CouchCRUD.h"
+
+@class Location;
+
+@interface Building : Datasource <CouchCRUD>
+
+@property (nonatomic, strong) NSString *name;
+@property (nonatomic, strong) NSString *description;
+@property (nonatomic, strong) NSString *campus;
+@property (nonatomic, strong) CLLocation *location;
+@property (nonatomic, strong) NSArray *rooms;
+
+-(NSArray*)roomListForBuilding:(NSString*)building;
 
 @end
