@@ -10,11 +10,7 @@
 
 @protocol CouchCRUD <NSObject>
 
--(id)initWithDatasource:(NSString*)datasource_ database:(NSString*)database_;
--(bool)add:(NSObject*)object;
--(NSArray*)read:(NSDictionary*)qualifiers;
-
-@property (nonatomic, strong) NSString *datasource;
-@property (nonatomic, strong) NSString *database;
+-(bool)create:(NSObject*)object;
+-(NSArray*)retrieve:(NSDictionary*)qualifiers;
 
 @end

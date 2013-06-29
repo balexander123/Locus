@@ -8,8 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BuildingViewController : UIViewController <UITableViewDataSource>
+@class CouchConstants;
+@class ApplicationConstants;
+
+@interface BuildingViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
 @property (strong, nonatomic) IBOutlet UIViewController *buildingTableView;
+@property (strong, readonly) ApplicationConstants *appConstants;
+@property (strong, readonly) CouchConstants *couchConstants;
 
 @end

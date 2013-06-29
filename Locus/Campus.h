@@ -9,13 +9,12 @@
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
 
+#import "Datasource.h"
 #import "CouchCRUD.h"
 
 @class Location;
 
-@interface Campus : NSObject <CouchCRUD> {
-    CLLocationCoordinate2D location;
-}
+@interface Campus : Datasource <CouchCRUD>
 
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSString *description;

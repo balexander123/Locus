@@ -35,7 +35,7 @@ describe(@"Campus", ^{
         [sf_campus setOrganization:[appCounstants organization]];
         NSArray* sfBuildings = [[NSArray alloc] initWithObjects:@"SFMB", @"SF1H", @"SF2F", nil];
         [sf_campus setBuildings:sfBuildings];
-        [campus add:sf_campus];
+        [campus create:sf_campus];
         
         Campus *oh_campus = [[Campus alloc] init];
         [oh_campus setName:@"OH"];
@@ -43,7 +43,7 @@ describe(@"Campus", ^{
         [oh_campus setOrganization:[appCounstants organization]];
         NSArray* ohBuildings = [[NSArray alloc] initWithObjects:@"OFC", @"OCC", nil];
         [oh_campus setBuildings:ohBuildings];
-        [campus add:oh_campus];
+        [campus create:oh_campus];
         
         Campus *petaluma = [[Campus alloc] init];
         [petaluma setName:@"Petaluma"];
@@ -51,14 +51,14 @@ describe(@"Campus", ^{
         [petaluma setOrganization:[appCounstants organization]];
         NSArray* petBuildings = [[NSArray alloc] initWithObjects:@"Athleta", nil];
         [petaluma setBuildings:petBuildings];
-        [campus add:petaluma];
+        [campus create:petaluma];
         
         // let's add a campus from another organization
         Campus *poa = [[Campus alloc] init];
         [poa setName:@"POA"];
         [poa setDescription:@"Porto Alegre"];
         [poa setOrganization:@"Thoughtworks"];
-        [campus add:poa];
+        [campus create:poa];
         
         // create the view to query by organization
         NSString *data = [[NSString alloc] initWithString:@"{\"language\": \"javascript\", \"views\": { \"by_organization\" : {\"map\": \"function(doc) { if (doc.type == \\\"Campus\\\" && doc.organization == \\\"Gap\\\") { emit(doc.description, doc); } }\" } } }"];

@@ -16,19 +16,7 @@
 @synthesize organization;
 @synthesize buildings;
 
-@synthesize datasource;
-@synthesize database;
-
--(id)initWithDatasource:(NSString*)datasource_ database:(NSString*)database_ {
-    self = [super init];
-    if (self) {
-        datasource = datasource_;
-        database = database_;
-    }
-    return self;
-}
-
--(bool)add:(NSObject*)object {
+-(bool)create:(NSObject*)object {
     bool bOk = false;
     CouchDBHelper *cbHelper = [[CouchDBHelper alloc] init];
     
@@ -53,12 +41,12 @@
     [data appendString:@"}"];
 
     
-    bOk = [cbHelper createData:datasource withDatabase:database withData:data andKey:[(Campus *)object name]];
+    bOk = [cbHelper createData:self.datasource withDatabase:self.database withData:data andKey:[(Campus *)object name]];
     
     return bOk;
 }
 
--(NSArray*)read:(NSDictionary*)qualifiers {
+-(NSArray*)retrieve:(NSDictionary*)qualifiers {
     CouchDBHelper *cbHelper = [[CouchDBHelper alloc] init];
     
     NSArray *response = [[NSArray alloc] init];
@@ -72,7 +60,7 @@
 -(NSArray*)campusListForOrganization:(NSString*)organization {
     CouchDBHelper *cbHelper = [[CouchDBHelper alloc] init];
     
-    NSDictionary *campusDict = [cbHelper execute:datasource withDatabase:database withView:@"/_design/campus/_view/by_organization" withParams:nil];
+    NSDictionary *campusDict = [cbHelper execute:self.datasource withDatabase:self.database withView:@"/_design/campus/_view/by_organization" withParams:nil];
     
     // get the rows from the dictionary
     NSArray *rows = [campusDict objectForKey:@"rows"];

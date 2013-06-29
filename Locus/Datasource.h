@@ -8,8 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
-@protocol Datasource <NSObject>
+@interface Datasource : NSObject
 
-@property (nonatomic, strong) NSString *baseDatasourceURL;
+-(id)initWithDatasource:(NSString*)datasource_ database:(NSString*)database_;
+
+@property (nonatomic, readonly) NSString *datasource;
+@property (nonatomic, readonly) NSString *database;
+
 
 @end
+

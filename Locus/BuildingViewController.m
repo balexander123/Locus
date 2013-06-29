@@ -7,6 +7,9 @@
 //
 
 #import "BuildingViewController.h"
+#import "CampusViewController.h"
+#import "ApplicationConstants.h"
+
 
 @interface BuildingViewController ()
 

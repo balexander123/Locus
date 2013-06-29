@@ -17,7 +17,7 @@
 @property (strong, nonatomic) IBOutlet UITableView *campusTableView;
 @property (strong, readonly) ApplicationConstants *appConstants;
 @property (strong, readonly) CouchConstants *couchConstants;
-@property (strong, strong) Campus *campus;
+@property (strong, readwrite) Campus *campus;
 @property (strong, readonly) NSArray *campusRows;
 
 @end

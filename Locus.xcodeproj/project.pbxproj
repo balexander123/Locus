@@ -18,16 +18,19 @@
 		6E5BA1A616EC3CB10052ACBF /* CouchDBHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5BA1A516EC3CB10052ACBF /* CouchDBHelper.m */; };
 		6E5BA1A716EC3CB10052ACBF /* CouchDBHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5BA1A516EC3CB10052ACBF /* CouchDBHelper.m */; };
 		6E5BA1A916EC45C50052ACBF /* CouchbaseHelperSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6E5BA1A816EC45C50052ACBF /* CouchbaseHelperSpec.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		6E62237C16ACFDCE003F5490 /* Organization.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E62237B16ACFDCD003F5490 /* Organization.m */; };
-		6E62237F16AD00EF003F5490 /* CampusList.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E62237E16AD00EF003F5490 /* CampusList.m */; };
 		6E62238216AD011E003F5490 /* Campus.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E62238116AD011E003F5490 /* Campus.m */; };
 		6E62238316AD08E9003F5490 /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EA85D5316A27BE00036451C /* Location.m */; };
-		6E62238416AD08F4003F5490 /* Organization.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E62237B16ACFDCD003F5490 /* Organization.m */; };
 		6E62238516AD0910003F5490 /* Campus.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E62238116AD011E003F5490 /* Campus.m */; };
 		6E6F12DC174F1F7600E23374 /* CampusSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6E6F12DB174F1F7600E23374 /* CampusSpec.mm */; };
 		6E72F2CB1728E611001D8BF6 /* ApplicationConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EA422D41727969800558B70 /* ApplicationConstants.m */; };
 		6E9127B91779562A00F735D4 /* MockCampus.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E9127B81779562A00F735D4 /* MockCampus.m */; };
-		6EA422CE1720FB7600558B70 /* CampusList.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E62237E16AD00EF003F5490 /* CampusList.m */; };
+		6E9127BB177A86D100F735D4 /* BuildingViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E9127BA177A86D100F735D4 /* BuildingViewController_iPad.xib */; };
+		6E9127BD177A98F600F735D4 /* BuildingViewControllerSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6E9127BC177A98F600F735D4 /* BuildingViewControllerSpec.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		6E9127C0177A9E5D00F735D4 /* Building.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E9127BF177A9E5D00F735D4 /* Building.m */; };
+		6E9127C2177A9F7200F735D4 /* BuildingSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6E9127C1177A9F7200F735D4 /* BuildingSpec.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		6E9127C4177BECA500F735D4 /* Datasource.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E9127C3177BECA500F735D4 /* Datasource.m */; };
+		6E9127C5177BEFA700F735D4 /* Datasource.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E9127C3177BECA500F735D4 /* Datasource.m */; };
+		6E9127C6177C04CD00F735D4 /* Building.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E9127BF177A9E5D00F735D4 /* Building.m */; };
 		6EA422D11727286300558B70 /* CouchConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EA422D01727286300558B70 /* CouchConstants.m */; };
 		6EA422D21727562800558B70 /* CouchConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EA422D01727286300558B70 /* CouchConstants.m */; };
 		6EA422D51727969900558B70 /* ApplicationConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EA422D41727969800558B70 /* ApplicationConstants.m */; };
@@ -88,16 +91,18 @@
 		6E5BA1A416EC3CB10052ACBF /* CouchDBHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CouchDBHelper.h; sourceTree = "<group>"; };
 		6E5BA1A516EC3CB10052ACBF /* CouchDBHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CouchDBHelper.m; sourceTree = "<group>"; };
 		6E5BA1A816EC45C50052ACBF /* CouchbaseHelperSpec.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CouchbaseHelperSpec.mm; sourceTree = "<group>"; };
-		6E62237A16ACFDCD003F5490 /* Organization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Organization.h; sourceTree = "<group>"; };
-		6E62237B16ACFDCD003F5490 /* Organization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Organization.m; sourceTree = "<group>"; };
-		6E62237D16AD00EF003F5490 /* CampusList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CampusList.h; sourceTree = "<group>"; };
-		6E62237E16AD00EF003F5490 /* CampusList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CampusList.m; sourceTree = "<group>"; };
 		6E62238016AD011E003F5490 /* Campus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Campus.h; sourceTree = "<group>"; };
 		6E62238116AD011E003F5490 /* Campus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Campus.m; sourceTree = "<group>"; };
 		6E6F12DA174F1B9500E23374 /* CouchCRUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CouchCRUD.h; sourceTree = "<group>"; };
 		6E6F12DB174F1F7600E23374 /* CampusSpec.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CampusSpec.mm; sourceTree = "<group>"; };
 		6E9127B71779562A00F735D4 /* MockCampus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MockCampus.h; sourceTree = "<group>"; };
 		6E9127B81779562A00F735D4 /* MockCampus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MockCampus.m; sourceTree = "<group>"; };
+		6E9127BA177A86D100F735D4 /* BuildingViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BuildingViewController_iPad.xib; sourceTree = "<group>"; };
+		6E9127BC177A98F600F735D4 /* BuildingViewControllerSpec.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = BuildingViewControllerSpec.mm; sourceTree = "<group>"; };
+		6E9127BE177A9E5C00F735D4 /* Building.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Building.h; sourceTree = "<group>"; };
+		6E9127BF177A9E5D00F735D4 /* Building.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Building.m; sourceTree = "<group>"; };
+		6E9127C1177A9F7200F735D4 /* BuildingSpec.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = BuildingSpec.mm; sourceTree = "<group>"; };
+		6E9127C3177BECA500F735D4 /* Datasource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Datasource.m; sourceTree = "<group>"; };
 		6EA422CF1727286300558B70 /* CouchConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CouchConstants.h; sourceTree = "<group>"; };
 		6EA422D01727286300558B70 /* CouchConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CouchConstants.m; sourceTree = "<group>"; };
 		6EA422D31727969800558B70 /* ApplicationConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplicationConstants.h; sourceTree = "<group>"; };
@@ -183,6 +188,8 @@
 				6E352CDC1765349E00D2B7E7 /* CampusViewControllerSpec.mm */,
 				6E9127B71779562A00F735D4 /* MockCampus.h */,
 				6E9127B81779562A00F735D4 /* MockCampus.m */,
+				6E9127BC177A98F600F735D4 /* BuildingViewControllerSpec.mm */,
+				6E9127C1177A9F7200F735D4 /* BuildingSpec.mm */,
 			);
 			path = Specs;
 			sourceTree = "<group>";
@@ -241,10 +248,6 @@
 				6EF3B83D169D295F00BB1A35 /* Supporting Files */,
 				6EA85D5216A27BE00036451C /* Location.h */,
 				6EA85D5316A27BE00036451C /* Location.m */,
-				6E62237A16ACFDCD003F5490 /* Organization.h */,
-				6E62237B16ACFDCD003F5490 /* Organization.m */,
-				6E62237D16AD00EF003F5490 /* CampusList.h */,
-				6E62237E16AD00EF003F5490 /* CampusList.m */,
 				6E62238016AD011E003F5490 /* Campus.h */,
 				6E62238116AD011E003F5490 /* Campus.m */,
 				6ED2C45F16CA0631005B0A03 /* User.h */,
@@ -266,6 +269,10 @@
 				6E352CD71762E5B000D2B7E7 /* BuildingViewController_iPhone.xib */,
 				6E352CD91762FD7700D2B7E7 /* LocusViewController.h */,
 				6E352CDA1762FD7700D2B7E7 /* LocusViewController.m */,
+				6E9127BA177A86D100F735D4 /* BuildingViewController_iPad.xib */,
+				6E9127BE177A9E5C00F735D4 /* Building.h */,
+				6E9127BF177A9E5D00F735D4 /* Building.m */,
+				6E9127C3177BECA500F735D4 /* Datasource.m */,
 			);
 			path = Locus;
 			sourceTree = "<group>";
@@ -372,6 +379,7 @@
 				6EF3B856169D295F00BB1A35 /* CampusViewController_iPad.xib in Resources */,
 				6ED2C47816D0A272005B0A03 /* Settings.bundle in Resources */,
 				6E352CD81762E5B000D2B7E7 /* BuildingViewController_iPhone.xib in Resources */,
+				6E9127BB177A86D100F735D4 /* BuildingViewController_iPad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -382,16 +390,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6E9127C6177C04CD00F735D4 /* Building.m in Sources */,
+				6E9127C5177BEFA700F735D4 /* Datasource.m in Sources */,
 				6E72F2CB1728E611001D8BF6 /* ApplicationConstants.m in Sources */,
 				6EA422D21727562800558B70 /* CouchConstants.m in Sources */,
-				6EA422CE1720FB7600558B70 /* CampusList.m in Sources */,
 				6E05B66D16F81D2700008413 /* SpatialHelper.m in Sources */,
 				6E05B66C16F8150000008413 /* LocusConstants.h in Sources */,
 				6ED2C47A16D1E19B005B0A03 /* CampusViewController.m in Sources */,
 				6ED2C47916D1E163005B0A03 /* AppDelegate.m in Sources */,
 				6ED2C46616CB5215005B0A03 /* User.m in Sources */,
 				6E62238516AD0910003F5490 /* Campus.m in Sources */,
-				6E62238416AD08F4003F5490 /* Organization.m in Sources */,
 				6E62238316AD08E9003F5490 /* Location.m in Sources */,
 				6EA85D4616A25B230036451C /* main.m in Sources */,
 				6EA85D4B16A25B240036451C /* ExampleSpec.mm in Sources */,
@@ -403,6 +411,8 @@
 				6E6F12DC174F1F7600E23374 /* CampusSpec.mm in Sources */,
 				6E352CDD1765349E00D2B7E7 /* CampusViewControllerSpec.mm in Sources */,
 				6E9127B91779562A00F735D4 /* MockCampus.m in Sources */,
+				6E9127BD177A98F600F735D4 /* BuildingViewControllerSpec.mm in Sources */,
+				6E9127C2177A9F7200F735D4 /* BuildingSpec.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -414,8 +424,6 @@
 				6EF3B847169D295F00BB1A35 /* AppDelegate.m in Sources */,
 				6EF3B850169D295F00BB1A35 /* CampusViewController.m in Sources */,
 				6EA85D5416A27BE00036451C /* Location.m in Sources */,
-				6E62237C16ACFDCE003F5490 /* Organization.m in Sources */,
-				6E62237F16AD00EF003F5490 /* CampusList.m in Sources */,
 				6E62238216AD011E003F5490 /* Campus.m in Sources */,
 				6ED2C46116CA0631005B0A03 /* User.m in Sources */,
 				6E5BA1A616EC3CB10052ACBF /* CouchDBHelper.m in Sources */,
@@ -424,6 +432,8 @@
 				6EA422D51727969900558B70 /* ApplicationConstants.m in Sources */,
 				6E352CD61762E4E700D2B7E7 /* BuildingViewController.m in Sources */,
 				6E352CDB1762FD7700D2B7E7 /* LocusViewController.m in Sources */,
+				6E9127C0177A9E5D00F735D4 /* Building.m in Sources */,
+				6E9127C4177BECA500F735D4 /* Datasource.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
