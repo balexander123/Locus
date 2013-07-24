@@ -14,6 +14,10 @@ describe(@"Campus", ^{
     __block CouchConstants *couchDBnames;
     __block ApplicationConstants *appCounstants;
     __block NSArray *campusRows;
+    __block NSString *sf_desc = @"San Francisco";
+    __block NSString *sfmb = @"SFMB";
+    __block NSString *sf1h = @"SF1H";
+    __block NSString *sf2f = @"SF2F";
     
     beforeEach(^{
         // Get couchdb constants
@@ -31,9 +35,9 @@ describe(@"Campus", ^{
         // add some campus'
         Campus *sf_campus = [[Campus alloc] init];
         [sf_campus setName:@"SF"];
-        [sf_campus setDescription:@"San Francisco"];
+        [sf_campus setDescription:sf_desc];
         [sf_campus setOrganization:[appCounstants organization]];
-        NSArray* sfBuildings = [[NSArray alloc] initWithObjects:@"SFMB", @"SF1H", @"SF2F", nil];
+        NSArray* sfBuildings = [[NSArray alloc] initWithObjects:sfmb, sf1h, sf2f, nil];
         [sf_campus setBuildings:sfBuildings];
         [campus create:sf_campus];
         
@@ -63,7 +67,7 @@ describe(@"Campus", ^{
         // create the view to query by organization
         NSString *data = [[NSString alloc] initWithString:@"{\"language\": \"javascript\", \"views\": { \"by_organization\" : {\"map\": \"function(doc) { if (doc.type == \\\"Campus\\\" && doc.organization == \\\"Gap\\\") { emit(doc.description, doc); } }\" } } }"];
         NSLog(@"by_organization view: %@", data);
-        bOK = [cbHelper createView:[couchDBnames baseDatasourceURL] withDatabase:[couchDBnames databaseName] withView:@"/_design/campus" withData:data];
+        bOK = [cbHelper createView:[couchDBnames baseDatasourceURL] withDatabase:[couchDBnames databaseName] withUrlSuffix:@"/_design/campus" withData:data];
         NSLog(@"createView status: %d", bOK);
     });
     
@@ -114,6 +118,22 @@ describe(@"Campus", ^{
         expect([campusDict valueForKey:@"_id"]).to(equal(@"SF"));
         buildingDict = [campusDict valueForKey:@"buildings"];
         expect(buildingDict.count).to(equal(3));
+    });
+    
+    it(@"should retrieve a campus from the datastore", ^{
+        Campus *sf = [[Campus alloc] initWithDatasource:couchDBnames.baseDatasourceURL database:couchDBnames.databaseName];
+        expect([sf retrieve:@"SF"]).to(equal(true));
+        expect([sf description]).to(equal(sf_desc));
+        expect([sf buildings].count).to(equal(3));
+        NSArray *buildings = [sf buildings];
+        expect([buildings objectAtIndex:0]).to(equal(sfmb));
+        expect([buildings objectAtIndex:1]).to(equal(sf1h));
+        expect([buildings objectAtIndex:2]).to(equal(sf2f));
+    });
+    
+    it(@"should not find a campus that does not exist", ^{
+        Campus *foo = [[Campus alloc] initWithDatasource:couchDBnames.baseDatasourceURL database:couchDBnames.databaseName];
+        expect([foo retrieve:@"FOO"]).to(equal(false));
     });
 });
 

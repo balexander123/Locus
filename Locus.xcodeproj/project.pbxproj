@@ -53,6 +53,7 @@
 		6ED2C47816D0A272005B0A03 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 6ED2C47716D0A272005B0A03 /* Settings.bundle */; };
 		6ED2C47916D1E163005B0A03 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EF3B846169D295F00BB1A35 /* AppDelegate.m */; };
 		6ED2C47A16D1E19B005B0A03 /* CampusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EF3B84F169D295F00BB1A35 /* CampusViewController.m */; };
+		6ED95891179F7AFA00DA401F /* BuildingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E352CD51762E4E700D2B7E7 /* BuildingViewController.m */; };
 		6EF3B837169D295F00BB1A35 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EF3B836169D295F00BB1A35 /* UIKit.framework */; };
 		6EF3B839169D295F00BB1A35 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EF3B838169D295F00BB1A35 /* Foundation.framework */; };
 		6EF3B83B169D295F00BB1A35 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EF3B83A169D295F00BB1A35 /* CoreGraphics.framework */; };
@@ -390,6 +391,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6ED95891179F7AFA00DA401F /* BuildingViewController.m in Sources */,
 				6E9127C6177C04CD00F735D4 /* Building.m in Sources */,
 				6E9127C5177BEFA700F735D4 /* Datasource.m in Sources */,
 				6E72F2CB1728E611001D8BF6 /* ApplicationConstants.m in Sources */,

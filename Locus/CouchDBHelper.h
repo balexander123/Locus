@@ -12,8 +12,8 @@
 
 -(bool)databaseOperation:(NSString*)dbURL withDatabase:(NSString*)database withMethod:(NSString*)method;
 -(NSString*)uuid;
--(bool)createView:(NSString*)dbURL withDatabase:(NSString*)database withView:(NSString*)view withData:(NSString*)viewData;
+-(bool)createView:(NSString*)dbURL withDatabase:(NSString*)database withUrlSuffix:(NSString*)view withData:(NSString*)viewData;
 -(bool)createData:(NSString*)dbURL withDatabase:(NSString*)database withData:(NSString*)data andKey:(NSString*)key;
--(NSDictionary *)execute:(NSString*)dbURL withDatabase:(NSString*)database withView:(NSString*)view withParams:(NSString*)viewParams;
+-(NSDictionary *)execute:(NSString*)dbURL withDatabase:(NSString*)database withUrlSuffix:(NSString*)view withParams:(NSString*)viewParams;
 
 @end

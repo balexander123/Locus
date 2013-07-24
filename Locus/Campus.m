@@ -46,21 +46,31 @@
     return bOk;
 }
 
--(NSArray*)retrieve:(NSDictionary*)qualifiers {
+-(bool)retrieve:(NSString *)_id {
     CouchDBHelper *cbHelper = [[CouchDBHelper alloc] init];
     
-    NSArray *response = [[NSArray alloc] init];
-    // iterate over qualifiers to build
+    NSDictionary *campusDict = [[NSDictionary alloc] init];
+    NSMutableString *campusLookup = [[NSMutableString alloc] initWithString:@"/"];
+    [campusLookup appendString:_id];
+
+    campusDict = [cbHelper execute:self.datasource withDatabase:self.database withUrlSuffix:campusLookup withParams:nil];
     
-    //NSDictionary *response = [[NSDictionary alloc] init];
-    //response = [cbHelper execute:<#(NSString *)#> withDatabase:<#(NSString *)#> withView:<#(NSString *)#> withParams:nil]
-    return response;
+    if ([[campusDict objectForKey:@"error"] isEqual: @"not_found"])
+        return false;
+    
+    // get the campus attributes from the dictionary
+    [self setName:[campusDict objectForKey:@"_id"]];
+    [self setDescription:[campusDict objectForKey:@"description"]];
+    [self setOrganization:[campusDict objectForKey:@"organization"]];
+    [self setBuildings:[campusDict objectForKey:@"buildings"]];
+    
+    return true;
 }
 
 -(NSArray*)campusListForOrganization:(NSString*)organization {
     CouchDBHelper *cbHelper = [[CouchDBHelper alloc] init];
     
-    NSDictionary *campusDict = [cbHelper execute:self.datasource withDatabase:self.database withView:@"/_design/campus/_view/by_organization" withParams:nil];
+    NSDictionary *campusDict = [cbHelper execute:self.datasource withDatabase:self.database withUrlSuffix:@"/_design/campus/_view/by_organization" withParams:nil];
     
     // get the rows from the dictionary
     NSArray *rows = [campusDict objectForKey:@"rows"];

@@ -10,6 +10,7 @@
 #import "ApplicationConstants.h"
 #import "CouchConstants.h"
 #import "Campus.h"
+#import "BuildingViewController.h"
 
 
 @interface CampusViewController ()
@@ -20,9 +21,9 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
-    NSArray *rows = [_campus campusListForOrganization:[_appConstants organization]];
+    _campusRows = [_campus campusListForOrganization:[_appConstants organization]];
     
-    return [rows count];
+    return [_campusRows count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -35,7 +36,7 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"CampusCell"];
     }
     
-    _campusRows = [_campus campusListForOrganization:[_appConstants organization]];
+    //_campusRows = [_campus campusListForOrganization:[_appConstants organization]];
     
     NSDictionary *element = [_campusRows objectAtIndex:[indexPath row]];
     

@@ -11,6 +11,6 @@
 @protocol CouchCRUD <NSObject>
 
 -(bool)create:(NSObject*)object;
--(NSArray*)retrieve:(NSDictionary*)qualifiers;
+-(bool)retrieve:(NSString*)_id;
 
 @end

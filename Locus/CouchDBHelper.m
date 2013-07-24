@@ -35,7 +35,7 @@
     return UUID;
 }
 
--(bool)createView:(NSString*)dbURL withDatabase:(NSString*)database withView:(NSString*)view withData:(NSString*)viewData {
+-(bool)createView:(NSString*)dbURL withDatabase:(NSString*)database withUrlSuffix:(NSString*)view withData:(NSString*)viewData {
     
     NSData *postData = [viewData dataUsingEncoding:NSUTF8StringEncoding];
     
@@ -86,7 +86,7 @@
     return bOK;
 }
 
--(NSDictionary *)execute:(NSString*)dbURL withDatabase:(NSString*)database withView:(NSString*)view withParams:(NSString*)viewParams {
+-(NSDictionary *)execute:(NSString*)dbURL withDatabase:(NSString*)database withUrlSuffix:(NSString*)view withParams:(NSString*)viewParams {
     NSMutableString *dbOperation;
     dbOperation = [[NSMutableString alloc] initWithString:dbURL];
     [dbOperation appendString:database];

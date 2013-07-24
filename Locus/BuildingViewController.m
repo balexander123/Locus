@@ -9,6 +9,7 @@
 #import "BuildingViewController.h"
 #import "CampusViewController.h"
 #import "ApplicationConstants.h"
+#import "Campus.h"
 
 
 @interface BuildingViewController ()
@@ -16,6 +17,16 @@
 @end
 
 @implementation BuildingViewController
+
+@synthesize campus;
+
+-(id)initWithCampus:(Campus *)campus_ {
+    self = [super init];
+    if (self) {
+        campus = campus_;
+    }
+    return self;
+}
 
 - (void)viewDidLoad
 {
@@ -36,18 +47,11 @@
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
-}
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
+    _buildingRows = [[self campus] buildings];
+    
+    return [_buildingRows count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
