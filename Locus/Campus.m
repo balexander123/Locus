@@ -16,22 +16,22 @@
 @synthesize organization;
 @synthesize buildings;
 
--(bool)create:(NSObject*)object {
+-(bool)create {
     bool bOk = false;
     CouchDBHelper *cbHelper = [[CouchDBHelper alloc] init];
     
     NSMutableString *data = [[NSMutableString alloc] init];
     
     [data appendString:@"{\"type\": \"Campus\", \"description\": \""];
-    [data appendString:[(Campus *)object description]];
+    [data appendString:[self description]];
     [data appendString:@"\", \"organization\": \""];
-    [data appendString:[(Campus *)object organization]];
+    [data appendString:[self organization]];
     [data appendString:@"\""];
     
     // add the buildings
-    if ([(Campus *)object buildings].count > 0) {
+    if ([self buildings].count > 0) {
         [data appendString:@", \"buildings\": ["];
-        for (NSString* building in [(Campus *)object buildings]) {
+        for (NSString* building in [self buildings]) {
             [data appendFormat:@"\"%@\", ",building];
         };
         [data appendString:@"]"];
@@ -41,7 +41,7 @@
     [data appendString:@"}"];
 
     
-    bOk = [cbHelper createData:self.datasource withDatabase:self.database withData:data andKey:[(Campus *)object name]];
+    bOk = [cbHelper createData:self.datasource withDatabase:self.database withData:data andKey:[self name]];
     
     return bOk;
 }

@@ -11,6 +11,7 @@
 @class CouchConstants;
 @class ApplicationConstants;
 @class Campus;
+@class Building;
 
 @interface BuildingViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
@@ -21,5 +22,6 @@
 @property (strong, readonly) NSArray *buildingRows;
 
 -(id)initWithCampus:(Campus *)campus_;
+-(Building *)buildingAtIndex:(NSUInteger) index;
 
 @end

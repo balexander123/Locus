@@ -33,36 +33,36 @@ describe(@"Campus", ^{
         expect(bOK).to(equal(true));
         
         // add some campus'
-        Campus *sf_campus = [[Campus alloc] init];
+        Campus *sf_campus = [[Campus alloc] initWithDatasource:[couchDBnames baseDatasourceURL] database:[couchDBnames databaseName]];
         [sf_campus setName:@"SF"];
         [sf_campus setDescription:sf_desc];
         [sf_campus setOrganization:[appCounstants organization]];
         NSArray* sfBuildings = [[NSArray alloc] initWithObjects:sfmb, sf1h, sf2f, nil];
         [sf_campus setBuildings:sfBuildings];
-        [campus create:sf_campus];
+        expect([sf_campus create]).to(equal(true));
         
-        Campus *oh_campus = [[Campus alloc] init];
+        Campus *oh_campus = [[Campus alloc] initWithDatasource:[couchDBnames baseDatasourceURL] database:[couchDBnames databaseName]];
         [oh_campus setName:@"OH"];
         [oh_campus setDescription:@"Ohio"];
         [oh_campus setOrganization:[appCounstants organization]];
         NSArray* ohBuildings = [[NSArray alloc] initWithObjects:@"OFC", @"OCC", nil];
         [oh_campus setBuildings:ohBuildings];
-        [campus create:oh_campus];
+        expect([oh_campus create]).to(equal(true));
         
-        Campus *petaluma = [[Campus alloc] init];
+        Campus *petaluma = [[Campus alloc] initWithDatasource:[couchDBnames baseDatasourceURL] database:[couchDBnames databaseName]];
         [petaluma setName:@"Petaluma"];
         [petaluma setDescription:@"Petaluma Campus"];
         [petaluma setOrganization:[appCounstants organization]];
         NSArray* petBuildings = [[NSArray alloc] initWithObjects:@"Athleta", nil];
         [petaluma setBuildings:petBuildings];
-        [campus create:petaluma];
+        expect([petaluma create]).to(equal(true));
         
         // let's add a campus from another organization
-        Campus *poa = [[Campus alloc] init];
+        Campus *poa = [[Campus alloc] initWithDatasource:[couchDBnames baseDatasourceURL] database:[couchDBnames databaseName]];
         [poa setName:@"POA"];
         [poa setDescription:@"Porto Alegre"];
         [poa setOrganization:@"Thoughtworks"];
-        [campus create:poa];
+        expect([poa create]).to(equal(true));
         
         // create the view to query by organization
         NSString *data = [[NSString alloc] initWithString:@"{\"language\": \"javascript\", \"views\": { \"by_organization\" : {\"map\": \"function(doc) { if (doc.type == \\\"Campus\\\" && doc.organization == \\\"Gap\\\") { emit(doc.description, doc); } }\" } } }"];

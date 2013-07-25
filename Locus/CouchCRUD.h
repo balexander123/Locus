@@ -10,7 +10,7 @@
 
 @protocol CouchCRUD <NSObject>
 
--(bool)create:(NSObject*)object;
+-(bool)create;
 -(bool)retrieve:(NSString*)_id;
 
 @end

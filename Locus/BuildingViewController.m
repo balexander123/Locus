@@ -8,8 +8,10 @@
 
 #import "BuildingViewController.h"
 #import "CampusViewController.h"
+#import "CouchConstants.h"
 #import "ApplicationConstants.h"
 #import "Campus.h"
+#import "Building.h"
 
 
 @interface BuildingViewController ()
@@ -114,6 +116,15 @@
      // Pass the selected object to the new view controller.
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
+}
+
+-(Building *)buildingAtIndex:(NSUInteger) index
+{
+    CouchConstants *couchDBnames = [[CouchConstants alloc] init];
+    Building *building = [[Building alloc] initWithDatasource:couchDBnames.baseDatasourceURL database:couchDBnames.databaseName];
+    [building retrieve:[_buildingRows objectAtIndex:(index)]];
+    
+    return building;
 }
 
 @end

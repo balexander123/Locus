@@ -11,22 +11,22 @@
 
 @implementation Building
 
--(bool)create:(NSObject*)object {
+-(bool)create {
     bool bOk = false;
     CouchDBHelper *cbHelper = [[CouchDBHelper alloc] init];
     
     NSMutableString *data = [[NSMutableString alloc] init];
     
     [data appendString:@"{\"type\": \"Building\", \"description\": \""];
-    [data appendString:[(Building *)object description]];
+    [data appendString:[self description]];
     [data appendString:@"\", \"campus\": \""];
-    [data appendString:[(Building *)object campus]];
+    [data appendString:[self campus]];
     [data appendString:@"\""];
     
     // add the rooms
-    if ([(Building *)object rooms].count > 0) {
+    if ([self rooms].count > 0) {
         [data appendString:@", \"rooms\": ["];
-        for (NSString* building in [(Building *)object rooms]) {
+        for (NSString* building in [self rooms]) {
             [data appendFormat:@"\"%@\", ",building];
         };
         [data appendString:@"]"];
@@ -34,29 +34,35 @@
         [data replaceOccurrencesOfString:@", ]" withString:@"]" options:NSLiteralSearch range:range];
     }
     [data appendString:@", \"loc\": ["];
-    Building *building = (Building *)object;
     [data appendFormat:@"%f, %f]}",
-        building.location.coordinate.latitude,
-        building.location.coordinate.longitude];
+        self.location.coordinate.latitude,
+        self.location.coordinate.longitude];
     
-    bOk = [cbHelper createData:self.datasource withDatabase:self.database withData:data andKey:[(Building *)object name]];
+    bOk = [cbHelper createData:self.datasource withDatabase:self.database withData:data andKey:[self name]];
     
     return bOk;
 }
 
--(NSArray*)retrieve:(NSDictionary*)qualifiers {
+-(bool)retrieve:(NSString*)_id {
     CouchDBHelper *cbHelper = [[CouchDBHelper alloc] init];
     
-    // iterate over qualifiers to build query string
-    // if key = _id, just pass as id parameter
-    // otherwise build view parameter
+    NSDictionary *buildingDict = [[NSDictionary alloc] init];
+    NSMutableString *buildingLookup = [[NSMutableString alloc] initWithString:@"/"];
+    [buildingLookup appendString:_id];
     
-    NSDictionary *response = [cbHelper execute:self.datasource withDatabase:self.database withUrlSuffix:nil withParams:nil];
+    buildingDict = [cbHelper execute:self.datasource withDatabase:self.database withUrlSuffix:buildingLookup withParams:nil];
     
-    // get the rows from the dictionary
-    NSArray *rows = [response objectForKey:@"rows"];
+    if ([[buildingDict objectForKey:@"error"] isEqual: @"not_found"])
+        return false;
     
-    return rows;
+    // get the campus attributes from the dictionary
+    [self setName:[buildingDict objectForKey:@"_id"]];
+    [self setDescription:[buildingDict objectForKey:@"description"]];
+    [self setCampus:[buildingDict objectForKey:@"campus"]];
+    [self setLocation:[buildingDict objectForKey:@"location"]];
+    [self setRooms:[buildingDict objectForKey:@"rooms"]];
+    
+    return true;
 }
 
 -(NSArray*)roomListForBuilding:(NSString*)building {

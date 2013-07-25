@@ -63,7 +63,7 @@ describe(@"Building", ^{
     });
     
     it(@"should know how to retrieve a building", ^{
-        Building *sf2f = [[Building alloc] init];
+        Building *sf2f = [[Building alloc] initWithDatasource:[couchDBnames baseDatasourceURL] database:[couchDBnames databaseName]];
         [sf2f setName:sfName];
         [sf2f setDescription:sfDescription];
         [sf2f setCampus:sfCampus];
@@ -71,7 +71,7 @@ describe(@"Building", ^{
         [sf2f setLocation:sf2fLocation];
         NSArray *sf2fRooms = [[NSArray alloc] initWithObjects:sfRoom1, sfRoom2, nil];
         [sf2f setRooms:sf2fRooms];
-        expect([building create:sf2f]).to(equal(true));
+        expect([sf2f create]).to(equal(true));
         
         CouchDBHelper *cbHelper = [[CouchDBHelper alloc] init];
         
@@ -85,31 +85,30 @@ describe(@"Building", ^{
     });
     
     it(@"should know how to find all buildings given a campus", ^{
-        Campus *campus = [[Campus alloc] initWithDatasource:[couchDBnames baseDatasourceURL] database:[couchDBnames databaseName]];
         // add some campus'
-        Campus *sf_campus = [[Campus alloc] init];
+        Campus *sf_campus = [[Campus alloc] initWithDatasource:[couchDBnames baseDatasourceURL] database:[couchDBnames databaseName]];
         [sf_campus setName:@"SF"];
         [sf_campus setDescription:@"San Francisco"];
         [sf_campus setOrganization:[appCounstants organization]];
         NSArray *sfBuildings = [[NSArray alloc] initWithObjects:@"SFMB", @"SF1H", @"SF2F", nil];
         [sf_campus setBuildings:sfBuildings];
-        expect([campus create:sf_campus]).to(equal(true));
+        expect([sf_campus create]).to(equal(true));
         
-        Campus *oh_campus = [[Campus alloc] init];
+        Campus *oh_campus = [[Campus alloc] initWithDatasource:[couchDBnames baseDatasourceURL] database:[couchDBnames databaseName]];
         [oh_campus setName:@"OH"];
         [oh_campus setDescription:@"Ohio"];
         [oh_campus setOrganization:[appCounstants organization]];
         NSArray *ohBuildings = [[NSArray alloc] initWithObjects:@"OFC", @"OCC", nil];
         [oh_campus setBuildings:ohBuildings];
-        expect([campus create:oh_campus]).to(equal(true));
+        expect([oh_campus create]).to(equal(true));
         
-        Campus *petaluma = [[Campus alloc] init];
+        Campus *petaluma = [[Campus alloc] initWithDatasource:[couchDBnames baseDatasourceURL] database:[couchDBnames databaseName]];
         [petaluma setName:@"Petaluma"];
         [petaluma setDescription:@"Petaluma Campus"];
         [petaluma setOrganization:[appCounstants organization]];
         NSArray *petBuildings = [[NSArray alloc] initWithObjects:@"Athleta", nil];
         [petaluma setBuildings:petBuildings];
-        expect([campus create:petaluma]).to(equal(true));
+        expect([petaluma create]).to(equal(true));
         
         // create some buildings
         Building *sfmb = [[Building alloc] initWithDatasource:[couchDBnames baseDatasourceURL] database:[couchDBnames databaseName]];
@@ -120,7 +119,7 @@ describe(@"Building", ^{
         [sfmb setLocation:sfmbLocation];
         NSArray *sfmbRooms = [[NSArray alloc] initWithObjects:@"SFMB Conf room1", @"SFMBConf room 2", nil];
         [sfmb setRooms:sfmbRooms];
-        expect([building create:sfmb]).to(equal(true));
+        expect([sfmb create]).to(equal(true));
         
         Building *sf2f = [[Building alloc] initWithDatasource:[couchDBnames baseDatasourceURL] database:[couchDBnames databaseName]];
         [sf2f setName:@"SF2F"];
@@ -130,7 +129,7 @@ describe(@"Building", ^{
         [sf2f setLocation:sf2fLocation];
         NSArray *sf2fRooms = [[NSArray alloc] initWithObjects:@"SF2F 2 North", @"SF2F Taco Truck", nil];
         [sf2f setRooms:sf2fRooms];
-        expect([building create:sf2f]).to(equal(true));
+        expect([sf2f create]).to(equal(true));
         
         Building *sf1h = [[Building alloc] initWithDatasource:[couchDBnames baseDatasourceURL] database:[couchDBnames databaseName]];
         [sf1h setName:@"SF1H"];
@@ -140,7 +139,7 @@ describe(@"Building", ^{
         [sf1h setLocation:sf1hLocation];
         NSArray *sf1hRooms = [[NSArray alloc] initWithObjects:@"SF1H Room1", @"SF1H Room2", @"SF1H Room3", nil];
         [sf1h setRooms:sf1hRooms];
-        expect([building create:sf1h]).to(equal(true));
+        expect([sf1h create]).to(equal(true));
         
         Building *ohOcc = [[Building alloc] initWithDatasource:[couchDBnames baseDatasourceURL] database:[couchDBnames databaseName]];
         [ohOcc setName:@"OCC"];
@@ -150,7 +149,7 @@ describe(@"Building", ^{
         [ohOcc setLocation:ohOccLocation];
         NSArray *ohOccRooms = [[NSArray alloc] initWithObjects:@"OCC Room1", @"OCC Room2", @"OCC Room3", nil];
         [ohOcc setRooms:ohOccRooms];
-        expect([building create:ohOcc]).to(equal(true));
+        expect([ohOcc create]).to(equal(true));
         
         Building *ohOfc = [[Building alloc] initWithDatasource:[couchDBnames baseDatasourceURL] database:[couchDBnames databaseName]];
         [ohOfc setName:@"OFC"];
@@ -160,7 +159,7 @@ describe(@"Building", ^{
         [ohOfc setLocation:ohOfcLocation];
         NSArray *ohOfcRooms = [[NSArray alloc] initWithObjects:@"OFC Room1", @"OFC Room2", @"OFC Room3", nil];
         [ohOfc setRooms:ohOfcRooms];
-        expect([building create:ohOfc]).to(equal(true));
+        expect([ohOfc create]).to(equal(true));
         
         // create the buildings by campus view
         NSString *data = [[NSString alloc] initWithString:@"{\"language\": \"javascript\", \"views\": { \"by_campus\" : {\"map\": \"function(doc) { if (doc.type == \\\"Building\\\") { emit(doc.campus, doc); } }\" } } }"];
@@ -187,15 +186,14 @@ describe(@"Building", ^{
     });
     
     it(@"should have a room list", ^{
-        Campus *campus = [[Campus alloc] initWithDatasource:[couchDBnames baseDatasourceURL] database:[couchDBnames databaseName]];
         // add some campus'
-        Campus *sf_campus = [[Campus alloc] init];
+        Campus *sf_campus = [[Campus alloc] initWithDatasource:[couchDBnames baseDatasourceURL] database:[couchDBnames databaseName]];
         [sf_campus setName:@"SF"];
         [sf_campus setDescription:@"San Francisco"];
         [sf_campus setOrganization:[appCounstants organization]];
         NSArray *sfBuildings = [[NSArray alloc] initWithObjects:@"SFMB", @"SF1H", @"SF2F", nil];
         [sf_campus setBuildings:sfBuildings];
-        expect([campus create:sf_campus]).to(equal(true));
+        expect([sf_campus create]).to(equal(true));
         
         Building *sf2f = [[Building alloc] initWithDatasource:[couchDBnames baseDatasourceURL] database:[couchDBnames databaseName]];
         [sf2f setName:@"SF2F"];
@@ -205,7 +203,7 @@ describe(@"Building", ^{
         [sf2f setLocation:sf2fLocation];
         NSArray *sf2fRooms = [[NSArray alloc] initWithObjects:@"SF2F 2 North", @"SF2F Taco Truck", nil];
         [sf2f setRooms:sf2fRooms];
-        expect([building create:sf2f]).to(equal(true));
+        expect([sf2f create]).to(equal(true));
         
         Building *sf1h = [[Building alloc] initWithDatasource:[couchDBnames baseDatasourceURL] database:[couchDBnames databaseName]];
         [sf1h setName:@"SF1H"];
@@ -215,7 +213,7 @@ describe(@"Building", ^{
         [sf1h setLocation:sf1hLocation];
         NSArray *sf1hRooms = [[NSArray alloc] initWithObjects:@"SF1H Room1", @"SF1H Room2", @"SF1H Room3", nil];
         [sf1h setRooms:sf1hRooms];
-        expect([building create:sf1h]).to(equal(true));
+        expect([sf1h create]).to(equal(true));
         
         // query for the sf 2 folsom building
         NSArray *roomList = [building roomListForBuilding:@"/SF2F"];
