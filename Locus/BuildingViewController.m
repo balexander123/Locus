@@ -8,6 +8,7 @@
 
 #import "BuildingViewController.h"
 #import "CampusViewController.h"
+#import "RoomViewController.h"
 #import "CouchConstants.h"
 #import "ApplicationConstants.h"
 #import "Campus.h"
@@ -28,6 +29,15 @@
         campus = campus_;
     }
     return self;
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    self.buildingTableView.delegate = self;
+    self.title = @"Buildings";
+    // Get couchdb constants
+    _couchConstants = [[CouchConstants alloc] init];
+    // Get app constants
+    _appConstants = [[ApplicationConstants alloc] init];
 }
 
 - (void)viewDidLoad
@@ -58,12 +68,18 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    UITableViewCell *cell = nil;
     
-    // Configure the cell...
+    cell = [_buildingTableView dequeueReusableCellWithIdentifier:@"BuildingCell"];
+    
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"BuildingCell"];
+    }
+    
+    cell.textLabel.text = [_buildingRows objectAtIndex:[indexPath row]];
     
     return cell;
+
 }
 
 /*
@@ -109,13 +125,15 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
+    NSLog(@"index: %d\n", indexPath.row);
+    RoomViewController *roomViewController;
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        roomViewController = [[RoomViewController alloc] initWithNibName:@"RoomViewController_iPhone" bundle:nil];
+    } else {
+        roomViewController = [[RoomViewController alloc] initWithNibName:@"RoomViewController_iPad" bundle:nil];
+    }
+    [roomViewController setBuilding:[self buildingAtIndex:indexPath.row]];
+    [self.navigationController pushViewController:roomViewController animated:YES];
 }
 
 -(Building *)buildingAtIndex:(NSUInteger) index

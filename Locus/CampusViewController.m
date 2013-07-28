@@ -26,8 +26,8 @@
     return [_campusRows count];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     UITableViewCell *cell = nil;
     
     cell = [_campusTableView dequeueReusableCellWithIdentifier:@"CampusCell"];
@@ -35,8 +35,6 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"CampusCell"];
     }
-    
-    //_campusRows = [_campus campusListForOrganization:[_appConstants organization]];
     
     NSDictionary *element = [_campusRows objectAtIndex:[indexPath row]];
     
@@ -49,7 +47,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     self.campusTableView.delegate = self;
-    self.title = @"Campus";
+    self.title = @"Browse";
     // Get couchdb constants
     _couchConstants = [[CouchConstants alloc] init];
     // Get app constants
@@ -74,6 +72,23 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSLog(@"index: %d\n", indexPath.row);
+    BuildingViewController *buildingViewController;
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        buildingViewController = [[BuildingViewController alloc] initWithNibName:@"BuildingViewController_iPhone" bundle:nil];
+    } else {
+        buildingViewController = [[BuildingViewController alloc] initWithNibName:@"BuildingViewController_iPad" bundle:nil];
+    }
+    [buildingViewController setCampus:[self campusAtIndex:indexPath.row]];
+    [self.navigationController pushViewController:buildingViewController animated:false];
+}
+
+-(Campus *)campusAtIndex:(NSUInteger) index {
+    CouchConstants *couchDBnames = [[CouchConstants alloc] init];
+    Campus *campus = [[Campus alloc] initWithDatasource:couchDBnames.baseDatasourceURL database:couchDBnames.databaseName];
+    NSDictionary *campusDict = [_campusRows objectAtIndex:(index)];
+    [campus retrieve:[campusDict objectForKey:@"id"]];
+    
+    return campus;
 }
 
 @end

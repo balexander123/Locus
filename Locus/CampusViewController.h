@@ -20,4 +20,6 @@
 @property (strong, readwrite) Campus *campus;
 @property (strong, readonly) NSArray *campusRows;
 
+-(Campus *)campusAtIndex:(NSUInteger) index;
+
 @end

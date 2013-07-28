@@ -21,7 +21,7 @@
 		6E62238216AD011E003F5490 /* Campus.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E62238116AD011E003F5490 /* Campus.m */; };
 		6E62238316AD08E9003F5490 /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EA85D5316A27BE00036451C /* Location.m */; };
 		6E62238516AD0910003F5490 /* Campus.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E62238116AD011E003F5490 /* Campus.m */; };
-		6E6F12DC174F1F7600E23374 /* CampusSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6E6F12DB174F1F7600E23374 /* CampusSpec.mm */; };
+		6E6F12DC174F1F7600E23374 /* CampusSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6E6F12DB174F1F7600E23374 /* CampusSpec.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		6E72F2CB1728E611001D8BF6 /* ApplicationConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EA422D41727969800558B70 /* ApplicationConstants.m */; };
 		6E9127B91779562A00F735D4 /* MockCampus.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E9127B81779562A00F735D4 /* MockCampus.m */; };
 		6E9127BB177A86D100F735D4 /* BuildingViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E9127BA177A86D100F735D4 /* BuildingViewController_iPad.xib */; };
@@ -48,12 +48,16 @@
 		6EB03BA416D5E6B30046C440 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 6EB03BA316D5E6B30046C440 /* Settings.bundle */; };
 		6ED2C46116CA0631005B0A03 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ED2C46016CA0631005B0A03 /* User.m */; };
 		6ED2C46616CB5215005B0A03 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ED2C46016CA0631005B0A03 /* User.m */; };
-		6ED2C46B16CC79EE005B0A03 /* sampleCampus.json in Resources */ = {isa = PBXBuildFile; fileRef = 6ED2C46A16CC79EE005B0A03 /* sampleCampus.json */; };
 		6ED2C47316D09ABD005B0A03 /* DatasourceSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6ED2C47216D09ABD005B0A03 /* DatasourceSpec.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		6ED2C47816D0A272005B0A03 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 6ED2C47716D0A272005B0A03 /* Settings.bundle */; };
 		6ED2C47916D1E163005B0A03 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EF3B846169D295F00BB1A35 /* AppDelegate.m */; };
 		6ED2C47A16D1E19B005B0A03 /* CampusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EF3B84F169D295F00BB1A35 /* CampusViewController.m */; };
 		6ED95891179F7AFA00DA401F /* BuildingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E352CD51762E4E700D2B7E7 /* BuildingViewController.m */; };
+		6ED9589317A47BD200DA401F /* RoomViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6ED9589217A47BD100DA401F /* RoomViewController_iPhone.xib */; };
+		6ED9589617A47C8B00DA401F /* RoomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ED9589517A47C8B00DA401F /* RoomViewController.m */; };
+		6ED9589817A47D1A00DA401F /* RoomViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6ED9589717A47D1900DA401F /* RoomViewController_iPad.xib */; };
+		6ED9589A17A4D59700DA401F /* RoomViewControllerSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6ED9589917A4D59700DA401F /* RoomViewControllerSpec.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		6ED9589B17A4E2FB00DA401F /* RoomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ED9589517A47C8B00DA401F /* RoomViewController.m */; };
 		6EF3B837169D295F00BB1A35 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EF3B836169D295F00BB1A35 /* UIKit.framework */; };
 		6EF3B839169D295F00BB1A35 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EF3B838169D295F00BB1A35 /* Foundation.framework */; };
 		6EF3B83B169D295F00BB1A35 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EF3B83A169D295F00BB1A35 /* CoreGraphics.framework */; };
@@ -122,11 +126,15 @@
 		6EB03BA316D5E6B30046C440 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		6ED2C45F16CA0631005B0A03 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		6ED2C46016CA0631005B0A03 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
-		6ED2C46A16CC79EE005B0A03 /* sampleCampus.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sampleCampus.json; sourceTree = "<group>"; };
 		6ED2C46F16D09906005B0A03 /* SpecHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpecHelper.h; sourceTree = "<group>"; };
 		6ED2C47216D09ABD005B0A03 /* DatasourceSpec.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = DatasourceSpec.mm; sourceTree = "<group>"; };
 		6ED2C47416D09B4D005B0A03 /* Datasource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Datasource.h; sourceTree = "<group>"; };
 		6ED2C47716D0A272005B0A03 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Settings.bundle; path = ../Settings.bundle; sourceTree = "<group>"; };
+		6ED9589217A47BD100DA401F /* RoomViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RoomViewController_iPhone.xib; sourceTree = "<group>"; };
+		6ED9589417A47C8A00DA401F /* RoomViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoomViewController.h; sourceTree = "<group>"; };
+		6ED9589517A47C8B00DA401F /* RoomViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoomViewController.m; sourceTree = "<group>"; };
+		6ED9589717A47D1900DA401F /* RoomViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RoomViewController_iPad.xib; sourceTree = "<group>"; };
+		6ED9589917A4D59700DA401F /* RoomViewControllerSpec.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RoomViewControllerSpec.mm; sourceTree = "<group>"; };
 		6EF3B832169D295F00BB1A35 /* Locus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Locus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6EF3B836169D295F00BB1A35 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		6EF3B838169D295F00BB1A35 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -191,6 +199,7 @@
 				6E9127B81779562A00F735D4 /* MockCampus.m */,
 				6E9127BC177A98F600F735D4 /* BuildingViewControllerSpec.mm */,
 				6E9127C1177A9F7200F735D4 /* BuildingSpec.mm */,
+				6ED9589917A4D59700DA401F /* RoomViewControllerSpec.mm */,
 			);
 			path = Specs;
 			sourceTree = "<group>";
@@ -253,7 +262,6 @@
 				6E62238116AD011E003F5490 /* Campus.m */,
 				6ED2C45F16CA0631005B0A03 /* User.h */,
 				6ED2C46016CA0631005B0A03 /* User.m */,
-				6ED2C46A16CC79EE005B0A03 /* sampleCampus.json */,
 				6ED2C47416D09B4D005B0A03 /* Datasource.h */,
 				6E5BA1A416EC3CB10052ACBF /* CouchDBHelper.h */,
 				6E5BA1A516EC3CB10052ACBF /* CouchDBHelper.m */,
@@ -274,6 +282,10 @@
 				6E9127BE177A9E5C00F735D4 /* Building.h */,
 				6E9127BF177A9E5D00F735D4 /* Building.m */,
 				6E9127C3177BECA500F735D4 /* Datasource.m */,
+				6ED9589217A47BD100DA401F /* RoomViewController_iPhone.xib */,
+				6ED9589717A47D1900DA401F /* RoomViewController_iPad.xib */,
+				6ED9589417A47C8A00DA401F /* RoomViewController.h */,
+				6ED9589517A47C8B00DA401F /* RoomViewController.m */,
 			);
 			path = Locus;
 			sourceTree = "<group>";
@@ -364,7 +376,6 @@
 			files = (
 				6EB03BA416D5E6B30046C440 /* Settings.bundle in Resources */,
 				6EA85D4416A25B230036451C /* InfoPlist.strings in Resources */,
-				6ED2C46B16CC79EE005B0A03 /* sampleCampus.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -381,6 +392,8 @@
 				6ED2C47816D0A272005B0A03 /* Settings.bundle in Resources */,
 				6E352CD81762E5B000D2B7E7 /* BuildingViewController_iPhone.xib in Resources */,
 				6E9127BB177A86D100F735D4 /* BuildingViewController_iPad.xib in Resources */,
+				6ED9589317A47BD200DA401F /* RoomViewController_iPhone.xib in Resources */,
+				6ED9589817A47D1A00DA401F /* RoomViewController_iPad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -391,6 +404,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6ED9589B17A4E2FB00DA401F /* RoomViewController.m in Sources */,
 				6ED95891179F7AFA00DA401F /* BuildingViewController.m in Sources */,
 				6E9127C6177C04CD00F735D4 /* Building.m in Sources */,
 				6E9127C5177BEFA700F735D4 /* Datasource.m in Sources */,
@@ -415,6 +429,7 @@
 				6E9127B91779562A00F735D4 /* MockCampus.m in Sources */,
 				6E9127BD177A98F600F735D4 /* BuildingViewControllerSpec.mm in Sources */,
 				6E9127C2177A9F7200F735D4 /* BuildingSpec.mm in Sources */,
+				6ED9589A17A4D59700DA401F /* RoomViewControllerSpec.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -436,6 +451,7 @@
 				6E352CDB1762FD7700D2B7E7 /* LocusViewController.m in Sources */,
 				6E9127C0177A9E5D00F735D4 /* Building.m in Sources */,
 				6E9127C4177BECA500F735D4 /* Datasource.m in Sources */,
+				6ED9589617A47C8B00DA401F /* RoomViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

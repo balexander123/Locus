@@ -16,17 +16,17 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
     self.locusController = [[UITabBarController alloc] init];
-    self.campusNavController = [[UINavigationController alloc] init];
-    self.buildingNavController = [[UINavigationController alloc] init];
+    self.browseNavController = [[UINavigationController alloc] init];
+    self.userNavController = [[UINavigationController alloc] init];
     
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
         self.campusViewController = [[CampusViewController alloc] initWithNibName:@"CampusViewController_iPhone" bundle:nil];
     } else {
         self.campusViewController = [[CampusViewController alloc] initWithNibName:@"CampusViewController_iPad" bundle:nil];
     }
-    [self.campusNavController pushViewController:self.campusViewController animated:NO];
+    [self.browseNavController pushViewController:self.campusViewController animated:NO];
     
-    self.locusController.viewControllers = [NSArray arrayWithObjects:_campusNavController, _buildingNavController, nil];
+    self.locusController.viewControllers = [NSArray arrayWithObjects:_browseNavController, _userNavController, nil];
     
     self.window.rootViewController = self.locusController;
     [self.window makeKeyAndVisible];

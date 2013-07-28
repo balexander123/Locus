@@ -15,10 +15,11 @@
 
 @interface BuildingViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
-@property (strong, nonatomic) IBOutlet UIViewController *buildingTableView;
+
+@property (strong, nonatomic) IBOutlet UITableView *buildingTableView;
 @property (strong, readonly) ApplicationConstants *appConstants;
 @property (strong, readonly) CouchConstants *couchConstants;
-@property (strong, readonly) Campus *campus;
+@property (strong, readwrite) Campus *campus;
 @property (strong, readonly) NSArray *buildingRows;
 
 -(id)initWithCampus:(Campus *)campus_;

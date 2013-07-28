@@ -17,7 +17,7 @@
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) CampusViewController *campusViewController;
 @property (strong, nonatomic) UITabBarController *locusController;
-@property (strong, nonatomic) UINavigationController *campusNavController;
-@property (strong, nonatomic) UINavigationController *buildingNavController;
+@property (strong, nonatomic) UINavigationController *browseNavController;
+@property (strong, nonatomic) UINavigationController *userNavController;
 
 @end
