@@ -1,3 +1,4 @@
+#import "SpecHelper.h"
 #import "ApplicationConstants.h"
 #import "CouchConstants.h"
 #import "CouchDBHelper.h"

@@ -58,6 +58,7 @@
 		6ED9589817A47D1A00DA401F /* RoomViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6ED9589717A47D1900DA401F /* RoomViewController_iPad.xib */; };
 		6ED9589A17A4D59700DA401F /* RoomViewControllerSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6ED9589917A4D59700DA401F /* RoomViewControllerSpec.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		6ED9589B17A4E2FB00DA401F /* RoomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ED9589517A47C8B00DA401F /* RoomViewController.m */; };
+		6ED9589D17A6CAAA00DA401F /* UserSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6ED9589C17A6CAAA00DA401F /* UserSpec.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		6EF3B837169D295F00BB1A35 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EF3B836169D295F00BB1A35 /* UIKit.framework */; };
 		6EF3B839169D295F00BB1A35 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EF3B838169D295F00BB1A35 /* Foundation.framework */; };
 		6EF3B83B169D295F00BB1A35 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EF3B83A169D295F00BB1A35 /* CoreGraphics.framework */; };
@@ -135,6 +136,7 @@
 		6ED9589517A47C8B00DA401F /* RoomViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoomViewController.m; sourceTree = "<group>"; };
 		6ED9589717A47D1900DA401F /* RoomViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RoomViewController_iPad.xib; sourceTree = "<group>"; };
 		6ED9589917A4D59700DA401F /* RoomViewControllerSpec.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RoomViewControllerSpec.mm; sourceTree = "<group>"; };
+		6ED9589C17A6CAAA00DA401F /* UserSpec.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = UserSpec.mm; sourceTree = "<group>"; };
 		6EF3B832169D295F00BB1A35 /* Locus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Locus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6EF3B836169D295F00BB1A35 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		6EF3B838169D295F00BB1A35 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -200,6 +202,7 @@
 				6E9127BC177A98F600F735D4 /* BuildingViewControllerSpec.mm */,
 				6E9127C1177A9F7200F735D4 /* BuildingSpec.mm */,
 				6ED9589917A4D59700DA401F /* RoomViewControllerSpec.mm */,
+				6ED9589C17A6CAAA00DA401F /* UserSpec.mm */,
 			);
 			path = Specs;
 			sourceTree = "<group>";
@@ -430,6 +433,7 @@
 				6E9127BD177A98F600F735D4 /* BuildingViewControllerSpec.mm in Sources */,
 				6E9127C2177A9F7200F735D4 /* BuildingSpec.mm in Sources */,
 				6ED9589A17A4D59700DA401F /* RoomViewControllerSpec.mm in Sources */,
+				6ED9589D17A6CAAA00DA401F /* UserSpec.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

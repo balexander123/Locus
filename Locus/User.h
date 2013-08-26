@@ -11,12 +11,16 @@
 @class Campus;
 @class Location;
 
-@interface User : NSObject {
+#import "Datasource.h"
+#import "CouchCRUD.h"
+
+@interface User : Datasource <CouchCRUD> {
 
 }
 
 @property (nonatomic, strong) NSString *name;
-@property (nonatomic, strong) Campus *campus;
+@property (nonatomic, strong) NSString *campus;
 @property (nonatomic, strong) Location *location;
+@property (nonatomic, strong) NSString *project;
 
 @end
