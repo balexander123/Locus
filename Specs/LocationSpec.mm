@@ -3,6 +3,7 @@
 #import "Location.h"
 #import "Campus.h"
 #import "User.h"
+#import "ApplicationConstants.h"
 #import "CouchConstants.h"
 #import "CouchDBHelper.h"
 #import "LocusConstants.h"
@@ -16,50 +17,64 @@ using namespace Cedar::Doubles;
 SPEC_BEGIN(LocationSpec)
 
 describe(@"User locations", ^{
+    
+    __block CouchConstants *couchDBnames;
+    __block ApplicationConstants *appCounstants;
+    __block CouchDBHelper *cbHelper;
 
     beforeEach(^{
-    });
+        // Get couchdb constants
+        couchDBnames = [[CouchConstants alloc] init];
+        // Get app constants
+        appCounstants = [[ApplicationConstants alloc] init];
         
-    Location *location = [[Location alloc] init];
-    
-    [location startTracking];
-    [location currentPosition];
-    
-    // Create a user
-    User *user = [[User alloc] init];
-    user.location = location;
-    
-    // need a couchbase helper
-    CouchDBHelper *cbHelper = [[CouchDBHelper alloc] init];
-    
-    // get the database url and name from the couchdb singleton
-    CouchConstants *couchDBnames = [[CouchConstants alloc] init];
-    
-    // create the locations db
-    it(@"should create a locations database", ^{
+        // create locations db
+        cbHelper = [[CouchDBHelper alloc] init];
         bool bOK = [cbHelper databaseOperation:[couchDBnames baseDatasourceURL] withDatabase:[couchDBnames databaseName] withMethod:@"PUT"];
         expect(bOK).to(equal(true));
-    });
-    
-    // add some locations
-    it(@"should create a location view function", ^{
+        
+        // add some locations
         [cbHelper createData:[couchDBnames baseDatasourceURL] withDatabase:[couchDBnames databaseName] withData:@"{\"loc\": [37.791269,-122.390978]}" andKey:@"SF2F"];
         [cbHelper createData:[couchDBnames baseDatasourceURL] withDatabase:[couchDBnames databaseName] withData:@"{\"loc\": [37.789353,-122.388747]}" andKey:@"SF1H"];
         [cbHelper createData:[couchDBnames baseDatasourceURL] withDatabase:[couchDBnames databaseName] withData:@"{\"loc\": [37.769494,-122.38688]}" andKey:@"SFMB"];
-    
+        
         // create the spatial M/R emit function block as a JSON string
         NSString *viewData = [[NSString alloc]initWithString:@"{\"spatial\":{\"points\" : \"function(doc) {\\n if (doc.loc) {\\n emit({\\n type: \\\"Point\\\", \\n coordinates: [doc.loc[0], doc.loc[1]]\\n}, [doc._id, doc.loc]);\\n}};\"}}"];
-        bool bOK = [cbHelper createView:[couchDBnames baseDatasourceURL] withDatabase:[couchDBnames databaseName] withUrlSuffix:@"/_design/main" withData:viewData];
+        bOK = [cbHelper createView:[couchDBnames baseDatasourceURL] withDatabase:[couchDBnames databaseName] withUrlSuffix:@"/_design/main" withData:viewData];
         expect(bOK).to(equal(true));
     });
     
+    afterEach(^{
+        // clean up
+        BOOL bOK = [cbHelper databaseOperation:[couchDBnames baseDatasourceURL] withDatabase:[couchDBnames databaseName] withMethod:@"DELETE"];
+        
+        expect(bOK).to(equal(true));
+    });
     
     it(@"should know the location of the user", ^{
+        Location *location = [[Location alloc] init];
+        
+        [location startTracking];
+        [location currentPosition];
+        
+        // Create a user
+        User *user = [[User alloc] init];
+        user.location = location;
+        
         [user.location latitude] should_not equal(NULL);
         [user.location longitude] should_not equal(NULL);
     });
     
     it(@"should know the nearest Gap campus of user", ^{
+        Location *location = [[Location alloc] init];
+        
+        [location startTracking];
+        [location currentPosition];
+        
+        // Create a user
+        User *user = [[User alloc] init];
+        user.location = location;
+        
         NSString *spatialPoints = [[NSString alloc] initWithFormat:spatialPointsFormat,user.location.latitude, user.location.longitude];
         
         // query the spatial view
@@ -115,17 +130,9 @@ describe(@"User locations", ^{
         expect(distance).to(BeGreaterThan<double>(0.0));
         
         expect(abs(round(distance)-SIX_MILES)).to(BeLTE<double>(0.0000001));
-        
-        // clean up
-        BOOL bOK = [cbHelper databaseOperation:[couchDBnames baseDatasourceURL] withDatabase:[couchDBnames databaseName] withMethod:@"DELETE"];
-        
-        expect(bOK).to(equal(true));
     });
     
-    it(@"should have a spatial view", ^{
-        // use the couchdb helper to create a locations database and spatial view
-        CouchDBHelper *cbHelper = [[CouchDBHelper alloc] init];
-        
+    it(@"should have a spatial view", ^{        
         // create the locations db
         bool bOK = [cbHelper databaseOperation:[couchDBnames baseDatasourceURL] withDatabase:[couchDBnames databaseName] withMethod:@"PUT"];
         expect(bOK).to(equal(true));
@@ -133,11 +140,6 @@ describe(@"User locations", ^{
         // create the spatial M/R emit function block as a JSON string
         NSString *viewData = [[NSString alloc]initWithString:@"{\"spatial\":{\"points\" : \"function(doc) {\\n if (doc.loc) {\\n emit({\\n type: \\\"Point\\\", \\n coordinates: [doc.loc[0], doc.loc[1]]\\n}, [doc._id, doc.loc]);\\n}};\"}}"];
         bOK = [cbHelper createView:[couchDBnames baseDatasourceURL] withDatabase:[couchDBnames databaseName] withUrlSuffix:@"/_design/main" withData:viewData];
-        expect(bOK).to(equal(true));
-        
-        // clean up
-        bOK = [cbHelper databaseOperation:[couchDBnames baseDatasourceURL] withDatabase:[couchDBnames databaseName] withMethod:@"DELETE"];
-        
         expect(bOK).to(equal(true));
     });
 });

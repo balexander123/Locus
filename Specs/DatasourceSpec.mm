@@ -22,7 +22,7 @@ describe(@"Datasource", ^{
     it(@"should have a default datasource", ^{
         // Get datasource URL
         NSLog(@"Datasource URL%@\n", [couchDBnames baseDatasourceURL]);
-        [couchDBnames baseDatasourceURL] should equal(@"http://127.0.0.1:5984/");
+        [couchDBnames baseDatasourceURL] should equal(@"http://localhost:5984/");
     });
     
     it(@"should return a valid response from the datasource", ^{
