@@ -8,6 +8,7 @@
 
 #import "Campus.h"
 #import "CouchDBHelper.h"
+#import "CouchDBHelperAsync.h"
 
 @implementation Campus
 
@@ -78,5 +79,10 @@
     return rows;
 }
 
+-(bool)campusListForOrganization:(NSString*)organization withDelegate:(id) respDelegate {
+    CouchDBHelperAsync *cbHelper = [[CouchDBHelperAsync alloc] init];
+        
+    return [cbHelper execute:self.datasource withDatabase:self.database withUrlSuffix:@"/_design/campus/_view/by_organization" withParams:nil withDelegate:respDelegate];
+}
 
 @end

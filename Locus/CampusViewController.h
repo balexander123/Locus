@@ -12,8 +12,9 @@
 @class CouchConstants;
 @class ApplicationConstants;
 
-@interface CampusViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+@interface CampusViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, NSURLConnectionDelegate>
 
+@property (strong, nonatomic) NSMutableData *responseData;
 @property (strong, nonatomic) IBOutlet UITableView *campusTableView;
 @property (strong, readonly) ApplicationConstants *appConstants;
 @property (strong, readonly) CouchConstants *couchConstants;

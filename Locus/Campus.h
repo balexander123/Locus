@@ -22,5 +22,6 @@
 @property (nonatomic, strong) NSArray *buildings;
 
 -(NSArray*)campusListForOrganization:(NSString*)organization;
+-(bool)campusListForOrganization:(NSString*)organization  withDelegate:(id) respDelegate;
 
 @end
