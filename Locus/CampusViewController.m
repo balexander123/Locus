@@ -11,6 +11,7 @@
 #import "CouchConstants.h"
 #import "Campus.h"
 #import "BuildingViewController.h"
+#import "MBProgressHUD.h"
 
 
 @interface CampusViewController ()
@@ -45,7 +46,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     self.campusTableView.delegate = self;
-    self.title = @"Browse";
+    self.title = @"Campus";
     // Get couchdb constants
     _couchConstants = [[CouchConstants alloc] init];
     // Get app constants
@@ -60,6 +61,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
 }
 
 - (void)didReceiveMemoryWarning
@@ -97,6 +99,7 @@
     // so that we can append data to it in the didReceiveData method
     // Furthermore, this method is called each time there is a redirect so reinitializing it
     // also serves to clear it
+
     _responseData = [[NSMutableData alloc] init];
 }
 
@@ -117,6 +120,8 @@
     NSError *jsonParsingError = nil;
     NSDictionary *campusDict = [NSJSONSerialization JSONObjectWithData:_responseData options:0 error:&jsonParsingError];
     _campusRows = [campusDict objectForKey:@"rows"];
+    
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
     
     [[self campusTableView] reloadData];
 }

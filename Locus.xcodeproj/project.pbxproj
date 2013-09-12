@@ -25,6 +25,9 @@
 		6E72F2CB1728E611001D8BF6 /* ApplicationConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EA422D41727969800558B70 /* ApplicationConstants.m */; };
 		6E77A39517DD760D00873D1E /* CouchDBHelperAsync.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E77A39417DD760D00873D1E /* CouchDBHelperAsync.m */; };
 		6E77A39617DD846B00873D1E /* CouchDBHelperAsync.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E77A39417DD760D00873D1E /* CouchDBHelperAsync.m */; };
+		6E77A39917DFE27900873D1E /* Room.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E77A39817DFE27900873D1E /* Room.m */; };
+		6E77A39C17E1623500873D1E /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E77A39A17E1616700873D1E /* MBProgressHUD.m */; };
+		6E77A39D17E1626100873D1E /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E77A39A17E1616700873D1E /* MBProgressHUD.m */; };
 		6E9127B91779562A00F735D4 /* MockCampus.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E9127B81779562A00F735D4 /* MockCampus.m */; };
 		6E9127BB177A86D100F735D4 /* BuildingViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E9127BA177A86D100F735D4 /* BuildingViewController_iPad.xib */; };
 		6E9127BD177A98F600F735D4 /* BuildingViewControllerSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6E9127BC177A98F600F735D4 /* BuildingViewControllerSpec.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -105,6 +108,10 @@
 		6E6F12DB174F1F7600E23374 /* CampusSpec.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CampusSpec.mm; sourceTree = "<group>"; };
 		6E77A39317DD760D00873D1E /* CouchDBHelperAsync.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CouchDBHelperAsync.h; sourceTree = "<group>"; };
 		6E77A39417DD760D00873D1E /* CouchDBHelperAsync.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CouchDBHelperAsync.m; sourceTree = "<group>"; };
+		6E77A39717DFE27800873D1E /* Room.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Room.h; sourceTree = "<group>"; };
+		6E77A39817DFE27900873D1E /* Room.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Room.m; sourceTree = "<group>"; };
+		6E77A39A17E1616700873D1E /* MBProgressHUD.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		6E77A39B17E1616700873D1E /* MBProgressHUD.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		6E9127B71779562A00F735D4 /* MockCampus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MockCampus.h; sourceTree = "<group>"; };
 		6E9127B81779562A00F735D4 /* MockCampus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MockCampus.m; sourceTree = "<group>"; };
 		6E9127BA177A86D100F735D4 /* BuildingViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BuildingViewController_iPad.xib; sourceTree = "<group>"; };
@@ -256,6 +263,8 @@
 		6EF3B83C169D295F00BB1A35 /* Locus */ = {
 			isa = PBXGroup;
 			children = (
+				6E77A39A17E1616700873D1E /* MBProgressHUD.m */,
+				6E77A39B17E1616700873D1E /* MBProgressHUD.h */,
 				6EF3B845169D295F00BB1A35 /* AppDelegate.h */,
 				6EF3B846169D295F00BB1A35 /* AppDelegate.m */,
 				6EF3B84E169D295F00BB1A35 /* CampusViewController.h */,
@@ -265,6 +274,8 @@
 				6EF3B83D169D295F00BB1A35 /* Supporting Files */,
 				6EA85D5216A27BE00036451C /* Location.h */,
 				6EA85D5316A27BE00036451C /* Location.m */,
+				6E77A39717DFE27800873D1E /* Room.h */,
+				6E77A39817DFE27900873D1E /* Room.m */,
 				6E62238016AD011E003F5490 /* Campus.h */,
 				6E62238116AD011E003F5490 /* Campus.m */,
 				6ED2C45F16CA0631005B0A03 /* User.h */,
@@ -413,6 +424,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6E77A39C17E1623500873D1E /* MBProgressHUD.m in Sources */,
 				6E77A39617DD846B00873D1E /* CouchDBHelperAsync.m in Sources */,
 				6ED9589B17A4E2FB00DA401F /* RoomViewController.m in Sources */,
 				6ED95891179F7AFA00DA401F /* BuildingViewController.m in Sources */,
@@ -448,6 +460,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6E77A39D17E1626100873D1E /* MBProgressHUD.m in Sources */,
 				6EF3B843169D295F00BB1A35 /* main.m in Sources */,
 				6EF3B847169D295F00BB1A35 /* AppDelegate.m in Sources */,
 				6EF3B850169D295F00BB1A35 /* CampusViewController.m in Sources */,
@@ -464,6 +477,7 @@
 				6E9127C4177BECA500F735D4 /* Datasource.m in Sources */,
 				6ED9589617A47C8B00DA401F /* RoomViewController.m in Sources */,
 				6E77A39517DD760D00873D1E /* CouchDBHelperAsync.m in Sources */,
+				6E77A39917DFE27900873D1E /* Room.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -8,6 +8,7 @@
 
 #import "Building.h"
 #import "CouchDBHelper.h"
+#import "CouchDBHelperAsync.h"
 
 @implementation Building
 
@@ -74,6 +75,17 @@
     NSArray *rows = [response objectForKey:@"rooms"];
     
     return rows;
+}
+
+
+-(bool)roomListForBuilding:(NSString*)building withDelegate:(id) respDelegate {
+    CouchDBHelperAsync *cbHelper = [[CouchDBHelperAsync alloc] init];
+    
+    NSMutableString *buildingParam = [[NSMutableString alloc] initWithString:@"?key=\""];
+    [buildingParam appendString:building];
+    [buildingParam appendString:@"\""];
+    
+    return [cbHelper execute:self.datasource withDatabase:self.database withUrlSuffix:@"/_design/rooms/_view/by_building" withParams:buildingParam withDelegate:respDelegate];
 }
 
 @end

@@ -70,16 +70,25 @@
     return (conn != nil);
 }
 
+
+
 -(bool)execute:(NSString*)dbURL withDatabase:(NSString*)database withUrlSuffix:(NSString*)view withParams:(NSString*)viewParams withDelegate:(id) respDelegate {
     NSMutableString *dbOperation;
     dbOperation = [[NSMutableString alloc] initWithString:dbURL];
     [dbOperation appendString:database];
     [dbOperation appendString:view];
+    
     if (viewParams != nil) {
         [dbOperation appendString:viewParams];
     }
     
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:dbOperation]];
+    NSLog(@"%@",dbOperation);
+    
+    NSString *properlyEscapedURL = [dbOperation stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    
+    NSLog(@"%@",properlyEscapedURL);
+    
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:properlyEscapedURL]];
     [request setHTTPMethod:@"GET"];
     [request setValue:@"application/x-www-form-urlencoded charset=utf-8" forHTTPHeaderField:@"Content-Type"];
     

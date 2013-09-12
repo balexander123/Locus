@@ -8,8 +8,10 @@
 
 #import "RoomViewController.h"
 #import "CouchConstants.h"
+#import "CouchDBHelperAsync.h"
 #import "ApplicationConstants.h"
 #import "Building.h"
+#import "MBProgressHUD.h"
 
 
 @interface RoomViewController ()
@@ -30,16 +32,16 @@
 - (void)viewWillAppear:(BOOL)animated {
     self.roomTableView.delegate = self;
     self.title = @"Rooms";
-    // Get couchdb constants
-    _couchConstants = [[CouchConstants alloc] init];
-    // Get app constants
-    _appConstants = [[ApplicationConstants alloc] init];
+    CouchConstants *couchDBnames = [[CouchConstants alloc] init];
+    Building *building = [[Building alloc] initWithDatasource:[couchDBnames baseDatasourceURL] database:[couchDBnames databaseName]];
+    [building roomListForBuilding:[self buildingId] withDelegate:self];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
 }
 
 - (void)didReceiveMemoryWarning
@@ -50,9 +52,10 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    _roomRows = [_building rooms];
-    
-    return [_roomRows count];
+    if (_roomRows == nil)
+        return 0;
+    else
+        return [_roomRows count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -65,9 +68,53 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"RoomCell"];
     }
     
-    cell.textLabel.text = [_roomRows objectAtIndex:[indexPath row]];
+    NSDictionary *element = [_roomRows objectAtIndex:[indexPath row]];
+    
+    NSDictionary *room = [element valueForKey:@"value"];
+    
+    cell.textLabel.text = [room valueForKey:@"description"];
     
     return cell;
 }
+
+#pragma mark NSURLConnection Delegate Methods
+
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
+    // A response has been received, this is where we initialize the instance var you created
+    // so that we can append data to it in the didReceiveData method
+    // Furthermore, this method is called each time there is a redirect so reinitializing it
+    // also serves to clear it
+    _responseData = [[NSMutableData alloc] init];
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
+    // Append the new data to the instance variable you declared
+    [_responseData appendData:data];
+}
+
+- (NSCachedURLResponse *)connection:(NSURLConnection *)connection
+                  willCacheResponse:(NSCachedURLResponse*)cachedResponse {
+    // Return nil to indicate not necessary to store a cached response for this connection
+    return nil;
+}
+
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
+    // The request is complete and data has been received
+    // You can parse the stuff in your instance variable now
+    NSError *jsonParsingError = nil;
+    NSDictionary *roomDict = [NSJSONSerialization JSONObjectWithData:_responseData options:0 error:&jsonParsingError];
+    _roomRows = [roomDict objectForKey:@"rows"];
+    
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
+    
+    [[self roomTableView] reloadData];
+}
+
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
+    // The request has failed for some reason!
+    // Check the error var
+    NSLog(@"error connecting...");
+}
+
 
 @end

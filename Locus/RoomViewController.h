@@ -12,11 +12,13 @@
 @class ApplicationConstants;
 @class CouchConstants;
 
-@interface RoomViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+@interface RoomViewController : UIViewController <UITableViewDelegate, UITableViewDataSource,NSURLConnectionDelegate>
 
 @property (strong, nonatomic) IBOutlet UITableView *roomTableView;
 
+@property (strong, nonatomic) NSMutableData *responseData;
 @property (strong, readwrite) Building *building;
+@property (strong, readwrite) NSString *buildingId;
 @property (strong, readonly) ApplicationConstants *appConstants;
 @property (strong, readonly) CouchConstants *couchConstants;
 @property (strong, readonly) NSArray *roomRows;

@@ -22,6 +22,7 @@
 @property (nonatomic, strong) CLLocation *location;
 @property (nonatomic, strong) NSArray *rooms;
 
--(NSArray*)roomListForBuilding:(NSString*)building;
+-(NSArray*)roomListForBuilding:(NSString*)building;;
+-(bool)roomListForBuilding:(NSString*)building withDelegate:(id) respDelegate;
 
 @end

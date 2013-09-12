@@ -132,7 +132,7 @@
     } else {
         roomViewController = [[RoomViewController alloc] initWithNibName:@"RoomViewController_iPad" bundle:nil];
     }
-    [roomViewController setBuilding:[self buildingAtIndex:indexPath.row]];
+    [roomViewController setBuildingId:[_buildingRows objectAtIndex:(indexPath.row)]];
     [self.navigationController pushViewController:roomViewController animated:YES];
 }
 
