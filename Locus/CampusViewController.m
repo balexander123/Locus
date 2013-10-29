@@ -79,15 +79,15 @@
     } else {
         buildingViewController = [[BuildingViewController alloc] initWithNibName:@"BuildingViewController_iPad" bundle:nil];
     }
-    [buildingViewController setCampus:[self campusAtIndex:indexPath.row]];
+    Datasource *wackShit = [[Datasource alloc] initWithDatasource:[_couchConstants baseDatasourceURL] database:[_couchConstants databaseName]];
+    [buildingViewController setCampus:[self campusAtIndex:indexPath.row datasource:wackShit]];
     [self.navigationController pushViewController:buildingViewController animated:false];
 }
 
--(Campus *)campusAtIndex:(NSUInteger) index {
-    CouchConstants *couchDBnames = [[CouchConstants alloc] init];
-    Campus *campus = [[Campus alloc] initWithDatasource:couchDBnames.baseDatasourceURL database:couchDBnames.databaseName];
-    NSDictionary *campusDict = [_campusRows objectAtIndex:(index)];
-    [campus retrieve:[campusDict objectForKey:@"id"]];
+-(Campus *)campusAtIndex:(NSUInteger) index datasource:(Datasource*)datasource {
+    Campus *campus = [[Campus alloc] initWithDatasource:datasource.datasource database:datasource.database];
+    NSString *campusId = [_campusRows objectAtIndex:(index)];
+    [campus retrieve:campusId];
     
     return campus;
 }

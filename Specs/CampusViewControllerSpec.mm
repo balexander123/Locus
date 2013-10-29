@@ -13,9 +13,9 @@ SPEC_BEGIN(CampusViewControllerSpec)
 describe(@"CampusViewController", ^{
     __block CampusViewController *campusViewController;
     __block UITableView *campusTableView;
-    __block MockCampus *campus;
     __block CouchConstants *couchDBnames;
     __block ApplicationConstants *appCounstants;
+    __block NSString *testDatabaseName=@"campusviewcontrollerspec";
     __block NSString *sf_desc = @"San Francisco";
     __block NSString *sfmb = @"SFMB";
     __block NSString *sf1h = @"SF1H";
@@ -23,8 +23,11 @@ describe(@"CampusViewController", ^{
     __block NSString *oh_desc = @"Ohio";
     __block NSString *occ = @"OCC";
     __block NSString *ofc = @"OFC";
+    __block NSString *sf = @"SF";
+    __block NSString *oh = @"OH";
 
     beforeEach(^{
+        
         campusViewController = [[CampusViewController alloc] init];
         [campusViewController viewWillAppear:false];
         
@@ -35,34 +38,38 @@ describe(@"CampusViewController", ^{
         
         // create locations db
         CouchDBHelper *cbHelper = [[CouchDBHelper alloc] init];
-        bool bOK = [cbHelper databaseOperation:[couchDBnames baseDatasourceURL] withDatabase:[couchDBnames databaseName] withMethod:@"PUT"];
+        bool bOK = [cbHelper databaseOperation:[couchDBnames baseDatasourceURL] withDatabase:testDatabaseName withMethod:@"PUT"];
         expect(bOK).to(equal(true));
         
-        Campus *sfCampus = [[Campus alloc] initWithDatasource:[couchDBnames baseDatasourceURL] database:[couchDBnames databaseName]];
-        [sfCampus setName:@"SF"];
+        Campus *sfCampus = [[Campus alloc] initWithDatasource:[couchDBnames baseDatasourceURL] database:testDatabaseName];
+        [sfCampus setName:sf];
         [sfCampus setDescription:sf_desc];
         [sfCampus setOrganization:[appCounstants organization]];
         NSArray* sfBuildings = [[NSArray alloc] initWithObjects:sfmb, sf1h, sf2f, nil];
         [sfCampus setBuildings:sfBuildings];
         expect([sfCampus create]).to(equal(true));
+        [campusViewController setCampus:sfCampus];
         
-        Campus *ohCampus = [[Campus alloc] initWithDatasource:[couchDBnames baseDatasourceURL] database:[couchDBnames databaseName]];
-        [ohCampus setName:@"OH"];
+        Campus *ohCampus = [[Campus alloc] initWithDatasource:[couchDBnames baseDatasourceURL] database:testDatabaseName];
+        [ohCampus setName:oh];
         [ohCampus setDescription:oh_desc];
         [ohCampus setOrganization:[appCounstants organization]];
         NSArray* ohBuildings = [[NSArray alloc] initWithObjects:ofc, occ, nil];
         [ohCampus setBuildings:ohBuildings];
         expect([ohCampus create]).to(equal(true));
         
+        [campusViewController setCampusRows:[[NSArray alloc] initWithObjects:sf, oh, nil]];
+        
         // create the view to query by organization
         NSString *data = [[NSString alloc] initWithString:@"{\"language\": \"javascript\", \"views\": { \"by_organization\" : {\"map\": \"function(doc) { if (doc.type == \\\"Campus\\\" && doc.organization == \\\"Gap\\\") { emit(doc.description, doc); } }\" } } }"];
         NSLog(@"by_organization view: %@", data);
-        bOK = [cbHelper createView:[couchDBnames baseDatasourceURL] withDatabase:[couchDBnames databaseName] withUrlSuffix:@"/_design/campus" withData:data];
+        bOK = [cbHelper createView:[couchDBnames baseDatasourceURL] withDatabase:testDatabaseName withUrlSuffix:@"/_design/campus" withData:data];
+        expect(bOK).to(equal(true));
     });
     
     afterEach(^{
         CouchDBHelper *cbHelper = [[CouchDBHelper alloc] init];
-        bool bOK = [cbHelper databaseOperation:[couchDBnames baseDatasourceURL] withDatabase:[couchDBnames databaseName] withMethod:@"DELETE"];
+        bool bOK = [cbHelper databaseOperation:[couchDBnames baseDatasourceURL] withDatabase:testDatabaseName withMethod:@"DELETE"];
         expect(bOK).to(equal(true));
     });
     
@@ -78,16 +85,10 @@ describe(@"CampusViewController", ^{
         expect(campusViewController.couchConstants).to_not(be_nil());
     });
     
-    it(@"should have a campus list available",^{
-        campusTableView = [[UITableView alloc] init];
-        campus = [[MockCampus alloc] init];
-        [campusViewController setCampus:campus];
-        expect([campusViewController tableView:campusTableView numberOfRowsInSection:0]).to(equal(3));
-    });
-    
     it(@"should get the campus selected by the user", ^{
         expect([campusViewController tableView:campusTableView numberOfRowsInSection:0]).to(equal(2));
-        Campus *sf = [campusViewController campusAtIndex:1];
+        Datasource *testDatasource = [[Datasource alloc] initWithDatasource:[couchDBnames baseDatasourceURL] database:testDatabaseName];
+        Campus *sf = [campusViewController campusAtIndex:0 datasource:testDatasource];
         expect([sf description]).to(equal(sf_desc));
         expect([sf buildings].count).to(equal(3));
         NSArray *buildings = [sf buildings];

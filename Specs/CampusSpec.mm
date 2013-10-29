@@ -13,6 +13,7 @@ describe(@"Campus", ^{
     __block Campus *campus;
     __block CouchConstants *couchDBnames;
     __block ApplicationConstants *appCounstants;
+    __block NSString *testDatabaseName=@"campusspec";
     __block NSArray *campusRows;
     __block NSString *sf_desc = @"San Francisco";
     __block NSString *sfmb = @"SFMB";
@@ -25,15 +26,15 @@ describe(@"Campus", ^{
         // Get app constants
         appCounstants = [[ApplicationConstants alloc] init];
         
-        campus = [[Campus alloc] initWithDatasource:[couchDBnames baseDatasourceURL] database:[couchDBnames databaseName]];
+        campus = [[Campus alloc] initWithDatasource:[couchDBnames baseDatasourceURL] database:testDatabaseName];
         
         // create locations db
         CouchDBHelper *cbHelper = [[CouchDBHelper alloc] init];
-        bool bOK = [cbHelper databaseOperation:[couchDBnames baseDatasourceURL] withDatabase:[couchDBnames databaseName] withMethod:@"PUT"];
+        bool bOK = [cbHelper databaseOperation:[couchDBnames baseDatasourceURL] withDatabase:testDatabaseName withMethod:@"PUT"];
         expect(bOK).to(equal(true));
         
         // add some campus'
-        Campus *sf_campus = [[Campus alloc] initWithDatasource:[couchDBnames baseDatasourceURL] database:[couchDBnames databaseName]];
+        Campus *sf_campus = [[Campus alloc] initWithDatasource:[couchDBnames baseDatasourceURL] database:testDatabaseName];
         [sf_campus setName:@"SF"];
         [sf_campus setDescription:sf_desc];
         [sf_campus setOrganization:[appCounstants organization]];
@@ -41,7 +42,7 @@ describe(@"Campus", ^{
         [sf_campus setBuildings:sfBuildings];
         expect([sf_campus create]).to(equal(true));
         
-        Campus *oh_campus = [[Campus alloc] initWithDatasource:[couchDBnames baseDatasourceURL] database:[couchDBnames databaseName]];
+        Campus *oh_campus = [[Campus alloc] initWithDatasource:[couchDBnames baseDatasourceURL] database:testDatabaseName];
         [oh_campus setName:@"OH"];
         [oh_campus setDescription:@"Ohio"];
         [oh_campus setOrganization:[appCounstants organization]];
@@ -49,7 +50,7 @@ describe(@"Campus", ^{
         [oh_campus setBuildings:ohBuildings];
         expect([oh_campus create]).to(equal(true));
         
-        Campus *petaluma = [[Campus alloc] initWithDatasource:[couchDBnames baseDatasourceURL] database:[couchDBnames databaseName]];
+        Campus *petaluma = [[Campus alloc] initWithDatasource:[couchDBnames baseDatasourceURL] database:testDatabaseName];
         [petaluma setName:@"Petaluma"];
         [petaluma setDescription:@"Petaluma Campus"];
         [petaluma setOrganization:[appCounstants organization]];
@@ -58,7 +59,7 @@ describe(@"Campus", ^{
         expect([petaluma create]).to(equal(true));
         
         // let's add a campus from another organization
-        Campus *poa = [[Campus alloc] initWithDatasource:[couchDBnames baseDatasourceURL] database:[couchDBnames databaseName]];
+        Campus *poa = [[Campus alloc] initWithDatasource:[couchDBnames baseDatasourceURL] database:testDatabaseName];
         [poa setName:@"POA"];
         [poa setDescription:@"Porto Alegre"];
         [poa setOrganization:@"Thoughtworks"];
@@ -67,13 +68,13 @@ describe(@"Campus", ^{
         // create the view to query by organization
         NSString *data = [[NSString alloc] initWithString:@"{\"language\": \"javascript\", \"views\": { \"by_organization\" : {\"map\": \"function(doc) { if (doc.type == \\\"Campus\\\" && doc.organization == \\\"Gap\\\") { emit(doc.description, doc); } }\" } } }"];
         NSLog(@"by_organization view: %@", data);
-        bOK = [cbHelper createView:[couchDBnames baseDatasourceURL] withDatabase:[couchDBnames databaseName] withUrlSuffix:@"/_design/campus" withData:data];
+        bOK = [cbHelper createView:[couchDBnames baseDatasourceURL] withDatabase:testDatabaseName withUrlSuffix:@"/_design/campus" withData:data];
         NSLog(@"createView status: %d", bOK);
     });
     
     afterEach(^{
         CouchDBHelper *cbHelper = [[CouchDBHelper alloc] init];
-        bool bOK = [cbHelper databaseOperation:[couchDBnames baseDatasourceURL] withDatabase:[couchDBnames databaseName] withMethod:@"DELETE"];
+        bool bOK = [cbHelper databaseOperation:[couchDBnames baseDatasourceURL] withDatabase:testDatabaseName withMethod:@"DELETE"];
         expect(bOK).to(equal(true));
     });
     
@@ -121,7 +122,7 @@ describe(@"Campus", ^{
     });
     
     it(@"should retrieve a campus from the datastore", ^{
-        Campus *sf = [[Campus alloc] initWithDatasource:couchDBnames.baseDatasourceURL database:couchDBnames.databaseName];
+        Campus *sf = [[Campus alloc] initWithDatasource:couchDBnames.baseDatasourceURL database:testDatabaseName];
         expect([sf retrieve:@"SF"]).to(equal(true));
         expect([sf description]).to(equal(sf_desc));
         expect([sf buildings].count).to(equal(3));
@@ -132,7 +133,7 @@ describe(@"Campus", ^{
     });
     
     it(@"should not find a campus that does not exist", ^{
-        Campus *foo = [[Campus alloc] initWithDatasource:couchDBnames.baseDatasourceURL database:couchDBnames.databaseName];
+        Campus *foo = [[Campus alloc] initWithDatasource:couchDBnames.baseDatasourceURL database:testDatabaseName];
         expect([foo retrieve:@"FOO"]).to(equal(false));
     });
 });

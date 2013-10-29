@@ -12,6 +12,7 @@
 @class ApplicationConstants;
 @class Campus;
 @class Building;
+@class Datasource;
 
 @interface BuildingViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
@@ -23,6 +24,6 @@
 @property (strong, readonly) NSArray *buildingRows;
 
 -(id)initWithCampus:(Campus *)campus_;
--(Building *)buildingAtIndex:(NSUInteger) index;
+-(Building *)buildingAtIndex:(NSUInteger) index datasource:(Datasource*)datasource;
 
 @end

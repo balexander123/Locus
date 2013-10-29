@@ -13,7 +13,7 @@ SPEC_BEGIN(RoomViewControllerSpec)
 describe(@"RoomViewController", ^{
     __block CouchConstants *couchDBnames;
     __block ApplicationConstants *appCounstants;
-    __block CouchDBHelper *cbHelper;
+    __block NSString *testDatabaseName=@"roomviewcontrollerspec";
     __block Building *building;
     __block RoomViewController *roomViewController;
     __block NSString *sfName = @"SF2F";
@@ -29,19 +29,19 @@ describe(@"RoomViewController", ^{
     beforeEach(^{
         appCounstants = [[ApplicationConstants alloc] init];
         couchDBnames = [[CouchConstants alloc] init];
-        building = [[Building alloc] initWithDatasource:[couchDBnames baseDatasourceURL] database:[couchDBnames databaseName]];
+        building = [[Building alloc] initWithDatasource:[couchDBnames baseDatasourceURL] database:testDatabaseName];
         roomViewController = [[RoomViewController alloc] init];
         [roomViewController setBuilding:building];
         
         // create locations db
         CouchDBHelper *cbHelper = [[CouchDBHelper alloc] init];
-        bool bOK = [cbHelper databaseOperation:[couchDBnames baseDatasourceURL] withDatabase:[couchDBnames databaseName] withMethod:@"PUT"];
+        bool bOK = [cbHelper databaseOperation:[couchDBnames baseDatasourceURL] withDatabase:testDatabaseName withMethod:@"PUT"];
         expect(bOK).to(equal(true));
     });
     
     afterEach(^{
         CouchDBHelper *cbHelper = [[CouchDBHelper alloc] init];
-        bool bOK = [cbHelper databaseOperation:[couchDBnames baseDatasourceURL] withDatabase:[couchDBnames databaseName] withMethod:@"DELETE"];
+        bool bOK = [cbHelper databaseOperation:[couchDBnames baseDatasourceURL] withDatabase:testDatabaseName withMethod:@"DELETE"];
         expect(bOK).to(equal(true));
     });
     
@@ -50,7 +50,7 @@ describe(@"RoomViewController", ^{
     });
     
     it(@"should have a list of rooms for the building", ^{
-        Building *sf2f = [[Building alloc] initWithDatasource:[couchDBnames baseDatasourceURL] database:[couchDBnames databaseName]];
+        Building *sf2f = [[Building alloc] initWithDatasource:[couchDBnames baseDatasourceURL] database:testDatabaseName];
         [sf2f setName:sfName];
         [sf2f setDescription:sfDescription];
         [sf2f setCampus:sfCampus];

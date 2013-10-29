@@ -3,6 +3,7 @@
 #import "Datasource.h"
 #import "CouchDBHelper.h"
 #import "CouchConstants.h"
+#import "ApplicationConstants.h"
 
 using namespace Cedar::Matchers;
 using namespace Cedar::Doubles;
@@ -11,17 +12,14 @@ SPEC_BEGIN(DatasourceSpec)
 
 
 describe(@"Datasource", ^{
-
+    __block CouchConstants *couchDBnames;
+    
     beforeEach(^{
-
+        couchDBnames = [[CouchConstants alloc] init];
     });
-    
-    // get the database url and name from the couchdb singleton
-    CouchConstants *couchDBnames = [[CouchConstants alloc] init];
-    
+        
     it(@"should have a default datasource", ^{
         // Get datasource URL
-        NSLog(@"Datasource URL%@\n", [couchDBnames baseDatasourceURL]);
         [couchDBnames baseDatasourceURL] should equal(@"http://localhost:5984/");
     });
     

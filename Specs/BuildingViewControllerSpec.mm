@@ -17,6 +17,7 @@ describe(@"BuildingViewController", ^{
     __block Campus *campus;
     __block CouchConstants *couchDBnames;
     __block ApplicationConstants *appCounstants;
+    __block NSString *testDatabaseName=@"buildingviewcontrollerspec";
     __block NSString *sf_desc = @"San Francisco";
     __block NSString *sfmb = @"SFMB";
     __block NSString *sf1h = @"SF1H";
@@ -37,10 +38,10 @@ describe(@"BuildingViewController", ^{
         
         // create locations db
         CouchDBHelper *cbHelper = [[CouchDBHelper alloc] init];
-        bool bOK = [cbHelper databaseOperation:[couchDBnames baseDatasourceURL] withDatabase:[couchDBnames databaseName] withMethod:@"PUT"];
+        bool bOK = [cbHelper databaseOperation:[couchDBnames baseDatasourceURL] withDatabase:testDatabaseName withMethod:@"PUT"];
         expect(bOK).to(equal(true));
         
-        campus = [[Campus alloc] initWithDatasource:[couchDBnames baseDatasourceURL] database:[couchDBnames databaseName]];
+        campus = [[Campus alloc] initWithDatasource:[couchDBnames baseDatasourceURL] database:testDatabaseName];
         [campus setName:@"SF"];
         [campus setDescription:sf_desc];
         [campus setOrganization:[appCounstants organization]];
@@ -54,7 +55,7 @@ describe(@"BuildingViewController", ^{
     
     afterEach(^{
         CouchDBHelper *cbHelper = [[CouchDBHelper alloc] init];
-        bool bOK = [cbHelper databaseOperation:[couchDBnames baseDatasourceURL] withDatabase:[couchDBnames databaseName] withMethod:@"DELETE"];
+        bool bOK = [cbHelper databaseOperation:[couchDBnames baseDatasourceURL] withDatabase:testDatabaseName withMethod:@"DELETE"];
         expect(bOK).to(equal(true));
     });
     
@@ -75,7 +76,7 @@ describe(@"BuildingViewController", ^{
     });
     
     it(@"should be able to retrieve a building given a table view index", ^{
-        Building *sf2f = [[Building alloc] initWithDatasource:[couchDBnames baseDatasourceURL] database:[couchDBnames databaseName]];
+        Building *sf2f = [[Building alloc] initWithDatasource:[couchDBnames baseDatasourceURL] database:testDatabaseName];
         [sf2f setName:sfName];
         [sf2f setDescription:sfDescription];
         [sf2f setCampus:sfCampus];
@@ -85,9 +86,10 @@ describe(@"BuildingViewController", ^{
         [sf2f setRooms:sf2fRooms];
         expect([sf2f create]).to(equal(true));
         
-        expect([buildingViewController tableView:buildingTableView numberOfRowsInSection:0]).to(equal(3));
-
-        Building *fetchedBuilding = [buildingViewController buildingAtIndex:2];
+        expect([buildingViewController tableView:buildingTableView numberOfRowsInSection:0]).to(equal(3));        
+        
+        Datasource *testDatasource = [[Datasource alloc] initWithDatasource:[couchDBnames baseDatasourceURL] database:testDatabaseName];
+        Building *fetchedBuilding = [buildingViewController buildingAtIndex:2 datasource:testDatasource];
         expect([fetchedBuilding name]).to(equal(sfName));
         expect([fetchedBuilding description]).to(equal(sfDescription));
         expect([fetchedBuilding campus]).to(equal(sfCampus));

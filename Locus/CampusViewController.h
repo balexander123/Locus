@@ -11,6 +11,7 @@
 @class Campus;
 @class CouchConstants;
 @class ApplicationConstants;
+@class Datasource;
 
 @interface CampusViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, NSURLConnectionDelegate>
 
@@ -19,9 +20,9 @@
 @property (strong, readonly) ApplicationConstants *appConstants;
 @property (strong, readonly) CouchConstants *couchConstants;
 @property (strong, readwrite) Campus *campus;
-@property (strong, readonly) NSArray *campusRows;
+@property (strong, readwrite) NSArray *campusRows;
 
 
--(Campus *)campusAtIndex:(NSUInteger) index;
+-(Campus *)campusAtIndex:(NSUInteger) index datasource:(Datasource*)datasource;
 
 @end

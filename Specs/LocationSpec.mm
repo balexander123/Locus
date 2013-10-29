@@ -21,6 +21,7 @@ describe(@"User locations", ^{
     __block CouchConstants *couchDBnames;
     __block ApplicationConstants *appCounstants;
     __block CouchDBHelper *cbHelper;
+    __block NSString *testDatabaseName=@"locationspec";
 
     beforeEach(^{
         // Get couchdb constants
@@ -30,23 +31,23 @@ describe(@"User locations", ^{
         
         // create locations db
         cbHelper = [[CouchDBHelper alloc] init];
-        bool bOK = [cbHelper databaseOperation:[couchDBnames baseDatasourceURL] withDatabase:[couchDBnames databaseName] withMethod:@"PUT"];
+        bool bOK = [cbHelper databaseOperation:[couchDBnames baseDatasourceURL] withDatabase:testDatabaseName withMethod:@"PUT"];
         expect(bOK).to(equal(true));
         
         // add some locations
-        [cbHelper createData:[couchDBnames baseDatasourceURL] withDatabase:[couchDBnames databaseName] withData:@"{\"loc\": [37.791269,-122.390978]}" andKey:@"SF2F"];
-        [cbHelper createData:[couchDBnames baseDatasourceURL] withDatabase:[couchDBnames databaseName] withData:@"{\"loc\": [37.789353,-122.388747]}" andKey:@"SF1H"];
-        [cbHelper createData:[couchDBnames baseDatasourceURL] withDatabase:[couchDBnames databaseName] withData:@"{\"loc\": [37.769494,-122.38688]}" andKey:@"SFMB"];
+        [cbHelper createData:[couchDBnames baseDatasourceURL] withDatabase:testDatabaseName withData:@"{\"loc\": [37.791269,-122.390978]}" andKey:@"SF2F"];
+        [cbHelper createData:[couchDBnames baseDatasourceURL] withDatabase:testDatabaseName withData:@"{\"loc\": [37.789353,-122.388747]}" andKey:@"SF1H"];
+        [cbHelper createData:[couchDBnames baseDatasourceURL] withDatabase:testDatabaseName withData:@"{\"loc\": [37.769494,-122.38688]}" andKey:@"SFMB"];
         
         // create the spatial M/R emit function block as a JSON string
         NSString *viewData = [[NSString alloc]initWithString:@"{\"spatial\":{\"points\" : \"function(doc) {\\n if (doc.loc) {\\n emit({\\n type: \\\"Point\\\", \\n coordinates: [doc.loc[0], doc.loc[1]]\\n}, [doc._id, doc.loc]);\\n}};\"}}"];
-        bOK = [cbHelper createView:[couchDBnames baseDatasourceURL] withDatabase:[couchDBnames databaseName] withUrlSuffix:@"/_design/main" withData:viewData];
+        bOK = [cbHelper createView:[couchDBnames baseDatasourceURL] withDatabase:testDatabaseName withUrlSuffix:@"/_design/main" withData:viewData];
         expect(bOK).to(equal(true));
     });
     
     afterEach(^{
         // clean up
-        BOOL bOK = [cbHelper databaseOperation:[couchDBnames baseDatasourceURL] withDatabase:[couchDBnames databaseName] withMethod:@"DELETE"];
+        BOOL bOK = [cbHelper databaseOperation:[couchDBnames baseDatasourceURL] withDatabase:testDatabaseName withMethod:@"DELETE"];
         
         expect(bOK).to(equal(true));
     });
@@ -78,7 +79,7 @@ describe(@"User locations", ^{
         NSString *spatialPoints = [[NSString alloc] initWithFormat:spatialPointsFormat,user.location.latitude, user.location.longitude];
         
         // query the spatial view
-        NSDictionary *spatialResponse = [cbHelper execute:[couchDBnames baseDatasourceURL] withDatabase:[couchDBnames databaseName] withUrlSuffix:@"/_design/main/" withParams:spatialPoints];
+        NSDictionary *spatialResponse = [cbHelper execute:[couchDBnames baseDatasourceURL] withDatabase:testDatabaseName withUrlSuffix:@"/_design/main/" withParams:spatialPoints];
         
         // get the rows dictionary
         NSDictionary *rows = [spatialResponse objectForKey:@"rows"];
@@ -98,7 +99,7 @@ describe(@"User locations", ^{
                                    firstGapLocation.longitude];
         
         // query the spatial view
-        NSDictionary *spatialResponse = [cbHelper execute:[couchDBnames baseDatasourceURL] withDatabase:[couchDBnames databaseName] withUrlSuffix:@"/_design/main/" withParams:spatialPoints];
+        NSDictionary *spatialResponse = [cbHelper execute:[couchDBnames baseDatasourceURL] withDatabase:testDatabaseName withUrlSuffix:@"/_design/main/" withParams:spatialPoints];
         
         // get the rows dictionary
         NSArray *rows = [spatialResponse objectForKey:@"rows"];
@@ -134,12 +135,12 @@ describe(@"User locations", ^{
     
     it(@"should have a spatial view", ^{        
         // create the locations db
-        bool bOK = [cbHelper databaseOperation:[couchDBnames baseDatasourceURL] withDatabase:[couchDBnames databaseName] withMethod:@"PUT"];
+        bool bOK = [cbHelper databaseOperation:[couchDBnames baseDatasourceURL] withDatabase:testDatabaseName withMethod:@"PUT"];
         expect(bOK).to(equal(true));
         
         // create the spatial M/R emit function block as a JSON string
         NSString *viewData = [[NSString alloc]initWithString:@"{\"spatial\":{\"points\" : \"function(doc) {\\n if (doc.loc) {\\n emit({\\n type: \\\"Point\\\", \\n coordinates: [doc.loc[0], doc.loc[1]]\\n}, [doc._id, doc.loc]);\\n}};\"}}"];
-        bOK = [cbHelper createView:[couchDBnames baseDatasourceURL] withDatabase:[couchDBnames databaseName] withUrlSuffix:@"/_design/main" withData:viewData];
+        bOK = [cbHelper createView:[couchDBnames baseDatasourceURL] withDatabase:testDatabaseName withUrlSuffix:@"/_design/main" withData:viewData];
         expect(bOK).to(equal(true));
     });
 });

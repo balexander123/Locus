@@ -136,10 +136,9 @@
     [self.navigationController pushViewController:roomViewController animated:YES];
 }
 
--(Building *)buildingAtIndex:(NSUInteger) index
+-(Building *)buildingAtIndex:(NSUInteger) index datasource:(Datasource*)datasource
 {
-    CouchConstants *couchDBnames = [[CouchConstants alloc] init];
-    Building *building = [[Building alloc] initWithDatasource:couchDBnames.baseDatasourceURL database:couchDBnames.databaseName];
+    Building *building = [[Building alloc] initWithDatasource:datasource.datasource database:datasource.database];
     [building retrieve:[_buildingRows objectAtIndex:(index)]];
     
     return building;

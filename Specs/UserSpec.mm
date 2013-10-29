@@ -13,6 +13,7 @@ SPEC_BEGIN(UserSpec)
 describe(@"User", ^{
     __block CouchConstants *couchDBnames;
     __block ApplicationConstants *appCounstants;
+    __block NSString *testDatabaseName=@"userspec";
     __block NSString *sfCampus = @"SF";
     __block NSString *sfUser = @"Barry";
     __block NSString *project = @"mobile";
@@ -25,18 +26,18 @@ describe(@"User", ^{
         
         // create locations db
         CouchDBHelper *cbHelper = [[CouchDBHelper alloc] init];
-        bool bOK = [cbHelper databaseOperation:[couchDBnames baseDatasourceURL] withDatabase:[couchDBnames databaseName] withMethod:@"PUT"];
+        bool bOK = [cbHelper databaseOperation:[couchDBnames baseDatasourceURL] withDatabase:testDatabaseName withMethod:@"PUT"];
         expect(bOK).to(equal(true));
     });
     
     afterEach(^{
         CouchDBHelper *cbHelper = [[CouchDBHelper alloc] init];
-        bool bOK = [cbHelper databaseOperation:[couchDBnames baseDatasourceURL] withDatabase:[couchDBnames databaseName] withMethod:@"DELETE"];
+        bool bOK = [cbHelper databaseOperation:[couchDBnames baseDatasourceURL] withDatabase:testDatabaseName withMethod:@"DELETE"];
         expect(bOK).to(equal(true));
     });
     
     it(@"should persist a user", ^{
-        User *user = [[User alloc] initWithDatasource:[couchDBnames baseDatasourceURL] database:[couchDBnames databaseName]];
+        User *user = [[User alloc] initWithDatasource:[couchDBnames baseDatasourceURL] database:testDatabaseName];
         
         [user setCampus:sfCampus];
         [user setName:sfUser];

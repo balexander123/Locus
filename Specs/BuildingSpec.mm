@@ -14,6 +14,7 @@ describe(@"Building", ^{
     __block Building *building;
     __block CouchConstants *couchDBnames;
     __block ApplicationConstants *appCounstants;
+    __block NSString *testDatabaseName=@"buildingspec";
     __block NSString *sfName = @"SF2F";
     __block NSString *sfDescription = @"2 Folsom Gap Inc. HQ";
     __block NSString *sfCampus = @"SF";
@@ -28,17 +29,17 @@ describe(@"Building", ^{
         // Get app constants
         appCounstants = [[ApplicationConstants alloc] init];
         
-        building = [[Building alloc] initWithDatasource:[couchDBnames baseDatasourceURL] database:[couchDBnames databaseName]];
+        building = [[Building alloc] initWithDatasource:[couchDBnames baseDatasourceURL] database:testDatabaseName];
         
         // create locations db
         CouchDBHelper *cbHelper = [[CouchDBHelper alloc] init];
-        bool bOK = [cbHelper databaseOperation:[couchDBnames baseDatasourceURL] withDatabase:[couchDBnames databaseName] withMethod:@"PUT"];
+        bool bOK = [cbHelper databaseOperation:[couchDBnames baseDatasourceURL] withDatabase:testDatabaseName withMethod:@"PUT"];
         expect(bOK).to(equal(true));
     });
     
     afterEach(^{
         CouchDBHelper *cbHelper = [[CouchDBHelper alloc] init];
-        bool bOK = [cbHelper databaseOperation:[couchDBnames baseDatasourceURL] withDatabase:[couchDBnames databaseName] withMethod:@"DELETE"];
+        bool bOK = [cbHelper databaseOperation:[couchDBnames baseDatasourceURL] withDatabase:testDatabaseName withMethod:@"DELETE"];
         expect(bOK).to(equal(true));
     });
     
@@ -63,7 +64,7 @@ describe(@"Building", ^{
     });
     
     it(@"should know how to retrieve a building", ^{
-        Building *sf2f = [[Building alloc] initWithDatasource:[couchDBnames baseDatasourceURL] database:[couchDBnames databaseName]];
+        Building *sf2f = [[Building alloc] initWithDatasource:[couchDBnames baseDatasourceURL] database:testDatabaseName];
         [sf2f setName:sfName];
         [sf2f setDescription:sfDescription];
         [sf2f setCampus:sfCampus];
@@ -75,7 +76,7 @@ describe(@"Building", ^{
         
         CouchDBHelper *cbHelper = [[CouchDBHelper alloc] init];
         
-        NSDictionary *buildingDict = [cbHelper execute:[couchDBnames baseDatasourceURL] withDatabase:[couchDBnames databaseName] withUrlSuffix:@"/SF2F" withParams:nil];
+        NSDictionary *buildingDict = [cbHelper execute:[couchDBnames baseDatasourceURL] withDatabase:testDatabaseName withUrlSuffix:@"/SF2F" withParams:nil];
         
         // get the rows from the dictionary
         NSString *building_desc = [buildingDict objectForKey:@"description"];
@@ -86,7 +87,7 @@ describe(@"Building", ^{
     
     it(@"should know how to find all buildings given a campus", ^{
         // add some campus'
-        Campus *sf_campus = [[Campus alloc] initWithDatasource:[couchDBnames baseDatasourceURL] database:[couchDBnames databaseName]];
+        Campus *sf_campus = [[Campus alloc] initWithDatasource:[couchDBnames baseDatasourceURL] database:testDatabaseName];
         [sf_campus setName:@"SF"];
         [sf_campus setDescription:@"San Francisco"];
         [sf_campus setOrganization:[appCounstants organization]];
@@ -94,7 +95,7 @@ describe(@"Building", ^{
         [sf_campus setBuildings:sfBuildings];
         expect([sf_campus create]).to(equal(true));
         
-        Campus *oh_campus = [[Campus alloc] initWithDatasource:[couchDBnames baseDatasourceURL] database:[couchDBnames databaseName]];
+        Campus *oh_campus = [[Campus alloc] initWithDatasource:[couchDBnames baseDatasourceURL] database:testDatabaseName];
         [oh_campus setName:@"OH"];
         [oh_campus setDescription:@"Ohio"];
         [oh_campus setOrganization:[appCounstants organization]];
@@ -102,7 +103,7 @@ describe(@"Building", ^{
         [oh_campus setBuildings:ohBuildings];
         expect([oh_campus create]).to(equal(true));
         
-        Campus *petaluma = [[Campus alloc] initWithDatasource:[couchDBnames baseDatasourceURL] database:[couchDBnames databaseName]];
+        Campus *petaluma = [[Campus alloc] initWithDatasource:[couchDBnames baseDatasourceURL] database:testDatabaseName];
         [petaluma setName:@"Petaluma"];
         [petaluma setDescription:@"Petaluma Campus"];
         [petaluma setOrganization:[appCounstants organization]];
@@ -111,7 +112,7 @@ describe(@"Building", ^{
         expect([petaluma create]).to(equal(true));
         
         // create some buildings
-        Building *sfmb = [[Building alloc] initWithDatasource:[couchDBnames baseDatasourceURL] database:[couchDBnames databaseName]];
+        Building *sfmb = [[Building alloc] initWithDatasource:[couchDBnames baseDatasourceURL] database:testDatabaseName];
         [sfmb setName:@"SFMB"];
         [sfmb setDescription:@"Mission Bay Building 1"];
         [sfmb setCampus:@"SF"];
@@ -121,7 +122,7 @@ describe(@"Building", ^{
         [sfmb setRooms:sfmbRooms];
         expect([sfmb create]).to(equal(true));
         
-        Building *sf2f = [[Building alloc] initWithDatasource:[couchDBnames baseDatasourceURL] database:[couchDBnames databaseName]];
+        Building *sf2f = [[Building alloc] initWithDatasource:[couchDBnames baseDatasourceURL] database:testDatabaseName];
         [sf2f setName:@"SF2F"];
         [sf2f setDescription:@"2 Folsom Gap Inc. HQ"];
         [sf2f setCampus:@"SF"];
@@ -131,7 +132,7 @@ describe(@"Building", ^{
         [sf2f setRooms:sf2fRooms];
         expect([sf2f create]).to(equal(true));
         
-        Building *sf1h = [[Building alloc] initWithDatasource:[couchDBnames baseDatasourceURL] database:[couchDBnames databaseName]];
+        Building *sf1h = [[Building alloc] initWithDatasource:[couchDBnames baseDatasourceURL] database:testDatabaseName];
         [sf1h setName:@"SF1H"];
         [sf1h setDescription:@"1 Harrison"];
         [sf1h setCampus:@"SF"];
@@ -141,7 +142,7 @@ describe(@"Building", ^{
         [sf1h setRooms:sf1hRooms];
         expect([sf1h create]).to(equal(true));
         
-        Building *ohOcc = [[Building alloc] initWithDatasource:[couchDBnames baseDatasourceURL] database:[couchDBnames databaseName]];
+        Building *ohOcc = [[Building alloc] initWithDatasource:[couchDBnames baseDatasourceURL] database:testDatabaseName];
         [ohOcc setName:@"OCC"];
         [ohOcc setDescription:@"Ohio Call Center"];
         [ohOcc setCampus:@"OH"];
@@ -151,7 +152,7 @@ describe(@"Building", ^{
         [ohOcc setRooms:ohOccRooms];
         expect([ohOcc create]).to(equal(true));
         
-        Building *ohOfc = [[Building alloc] initWithDatasource:[couchDBnames baseDatasourceURL] database:[couchDBnames databaseName]];
+        Building *ohOfc = [[Building alloc] initWithDatasource:[couchDBnames baseDatasourceURL] database:testDatabaseName];
         [ohOfc setName:@"OFC"];
         [ohOfc setDescription:@"Ohio Fulfilment Center"];
         [ohOfc setCampus:@"OH"];
@@ -165,19 +166,19 @@ describe(@"Building", ^{
         NSString *data = [[NSString alloc] initWithString:@"{\"language\": \"javascript\", \"views\": { \"by_campus\" : {\"map\": \"function(doc) { if (doc.type == \\\"Building\\\") { emit(doc.campus, doc); } }\" } } }"];
         NSLog(@"by_campus view: %@", data);
         CouchDBHelper *cbHelper = [[CouchDBHelper alloc] init];
-        bool bOK = [cbHelper createView:[couchDBnames baseDatasourceURL] withDatabase:[couchDBnames databaseName] withUrlSuffix:@"/_design/building" withData:data];
+        bool bOK = [cbHelper createView:[couchDBnames baseDatasourceURL] withDatabase:testDatabaseName withUrlSuffix:@"/_design/building" withData:data];
         
         expect(bOK).to(equal(true));
         
         // find all sf campus builings
-        NSDictionary *buildingDict = [cbHelper execute:[couchDBnames baseDatasourceURL] withDatabase:[couchDBnames databaseName] withUrlSuffix:@"/_design/building/_view/by_campus" withParams:@"?key=%22SF%22"];
+        NSDictionary *buildingDict = [cbHelper execute:[couchDBnames baseDatasourceURL] withDatabase:testDatabaseName withUrlSuffix:@"/_design/building/_view/by_campus" withParams:@"?key=%22SF%22"];
         
         // get the rows from the dictionary
         NSArray *rows = [buildingDict objectForKey:@"rows"];
         expect(rows.count).to(equal(3));
         
         // find all oh campus
-        buildingDict = [cbHelper execute:[couchDBnames baseDatasourceURL] withDatabase:[couchDBnames databaseName] withUrlSuffix:@"/_design/building/_view/by_campus" withParams:@"?key=%22OH%22"];
+        buildingDict = [cbHelper execute:[couchDBnames baseDatasourceURL] withDatabase:testDatabaseName withUrlSuffix:@"/_design/building/_view/by_campus" withParams:@"?key=%22OH%22"];
         
         // get the rows from the dictionary
         rows = [buildingDict objectForKey:@"rows"];
@@ -187,7 +188,7 @@ describe(@"Building", ^{
     
     it(@"should have a room list", ^{
         // add some campus'
-        Campus *sf_campus = [[Campus alloc] initWithDatasource:[couchDBnames baseDatasourceURL] database:[couchDBnames databaseName]];
+        Campus *sf_campus = [[Campus alloc] initWithDatasource:[couchDBnames baseDatasourceURL] database:testDatabaseName];
         [sf_campus setName:@"SF"];
         [sf_campus setDescription:@"San Francisco"];
         [sf_campus setOrganization:[appCounstants organization]];
@@ -195,7 +196,7 @@ describe(@"Building", ^{
         [sf_campus setBuildings:sfBuildings];
         expect([sf_campus create]).to(equal(true));
         
-        Building *sf2f = [[Building alloc] initWithDatasource:[couchDBnames baseDatasourceURL] database:[couchDBnames databaseName]];
+        Building *sf2f = [[Building alloc] initWithDatasource:[couchDBnames baseDatasourceURL] database:testDatabaseName];
         [sf2f setName:@"SF2F"];
         [sf2f setDescription:@"2 Folsom Gap Inc. HQ"];
         [sf2f setCampus:@"SF"];
@@ -205,7 +206,7 @@ describe(@"Building", ^{
         [sf2f setRooms:sf2fRooms];
         expect([sf2f create]).to(equal(true));
         
-        Building *sf1h = [[Building alloc] initWithDatasource:[couchDBnames baseDatasourceURL] database:[couchDBnames databaseName]];
+        Building *sf1h = [[Building alloc] initWithDatasource:[couchDBnames baseDatasourceURL] database:testDatabaseName];
         [sf1h setName:@"SF1H"];
         [sf1h setDescription:@"1 Harrison"];
         [sf1h setCampus:@"SF"];
